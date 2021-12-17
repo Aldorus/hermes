@@ -1,0 +1,29 @@
+@use "~sass-mq" as mq;
+@use '../../../tokens/mixins';
+
+.Navigation {
+  --color-navigation: var(--color-primary);
+  @include mixins.asideSpacer;
+
+  height: 100vh;
+  padding-left: var(--space-8x);
+  display: grid;
+  z-index: 1;
+
+  .Navigation--item {
+    display: flex;
+    align-items: center;
+    padding-left: var(--space-4x);
+    color: var(--color-navigation);
+    text-shadow: -2px 0 3rem var(--color-navigation);
+    transition: text-shadow 0.3s ease;
+
+    &:hover {
+      text-shadow: -2px 0 6rem var(--color-navigation);
+    }
+  }
+
+  @include mq.mq($until: tablet) {
+    display: none;
+  }
+}

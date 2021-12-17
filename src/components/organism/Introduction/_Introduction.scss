@@ -1,0 +1,15 @@
+@use "~sass-mq" as mq;
+
+.Introduction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  padding: 0 var(--space-4x);
+
+  @include mq.mq($until: tablet) {
+    grid-template-columns: 1fr;
+    padding: var(--space-8x) var(--space-4x);
+  }
+}

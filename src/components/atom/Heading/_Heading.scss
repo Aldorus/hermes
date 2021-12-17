@@ -1,0 +1,14 @@
+@use "../../../tokens/typography";
+@use "../../../tokens/variant";
+
+.Heading {
+  @include variant.variant;
+
+  &__h1 {
+    @include typography.heading1;
+  }
+
+  &__h2 {
+    @include typography.heading2;
+  }
+}

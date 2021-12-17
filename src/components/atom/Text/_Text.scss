@@ -1,0 +1,5 @@
+@import "../../../tokens/variant";
+
+.Text {
+  @include variant;
+}

@@ -1,0 +1,13 @@
+overwrite: true
+schema: 'https://graphql.contentful.com/content/v1/spaces/39f5y6g7sdnk/environments/master?access_token=aReZWDKWzrg85vaf5sTCJEDpGcY6QsYo7O51l8TNj74'
+documents: null
+config:
+  nonOptionalTypename: true
+generates:
+  src/models/schema.graphql:
+    plugins:
+      - 'schema-ast'
+  src/models/graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-resolvers'

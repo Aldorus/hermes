@@ -1,0 +1,13 @@
+@mixin asideSpacer {
+  --color-space: var(--color-primary);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: var(--space-8x);
+    top: 0;
+    bottom: 0;
+    background: var(--color-space);
+    width: 1px;
+  }
+}

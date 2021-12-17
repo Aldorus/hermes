@@ -1,0 +1,22 @@
+@use "../../../tokens/typography";
+@use "../../../tokens/variant";
+
+.Markdown {
+  @include variant.variant;
+
+  h1 {
+    @include typography.heading1;
+  }
+
+  h2 {
+    @include typography.heading2;
+  }
+
+  p {
+    font-family: var(--font-primary);
+  }
+
+  a {
+    @include typography.link;
+  }
+}

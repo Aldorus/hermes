@@ -1,0 +1,37 @@
+@use "~sass-mq" as mq;
+@use 'tokens/mixins';
+
+.App {
+  --color-navigation: var(--color-primary);
+
+  position: relative;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-gap: var(--space-4x);
+  margin-bottom: var(--space-8x);
+
+  @include mq.mq($until: tablet) {
+    grid-template-columns: 1fr;
+  }
+
+  &--colored {
+    background: var(--color-primary);
+  }
+
+  &--aside {
+    display: block;
+    padding-left: calc(var(--space-8x) + var(--space-4x));
+    padding-top: var(--space-2x);
+    position: relative;
+    @include mixins.asideSpacer;
+
+    @include mq.mq($until: tablet) {
+      display: none;
+    }
+  }
+
+  &--main {
+    padding: 0 var(--space-4x);
+  }
+}
+

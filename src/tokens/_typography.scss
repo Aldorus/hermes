@@ -1,0 +1,33 @@
+//@import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;700&display=swap");
+//@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;700&family=Lato&display=swap');
+
+:root {
+  --font-primary: "Zen Kaku Gothic Antique", sans-serif;
+  --font-seconday: "Lato", serif;
+}
+
+@mixin heading {
+}
+
+@mixin heading1 {
+  @include heading;
+  font-family: var(--font-seconday);
+  font-size: 3rem;
+}
+
+@mixin heading2 {
+  @include heading;
+  font-family: var(--font-seconday);
+  font-size: 1.5rem;
+}
+
+@mixin link {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-size: 1em;
+
+  &:hover {
+    border-bottom: 1px solid var(--color-primary);
+  }
+}
