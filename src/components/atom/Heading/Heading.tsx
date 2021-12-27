@@ -20,7 +20,7 @@ export const Heading: React.FC<HeadingProps> = ({
     <HeadingLevel
       {...props}
       // @ts-ignore
-      className={`${namespace.blocksNames({ variant, level })}`}
+      className={`${namespace.blocksNames({ variant, level: HeadingLevel })}`}
     />
   );
 };
