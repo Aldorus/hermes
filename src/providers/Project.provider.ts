@@ -3,6 +3,7 @@ import {
   ProjectCollection,
   ProjectFilter,
   ProjectOrder,
+  Technology,
 } from "../models/graphql";
 import { gql, useQuery } from "@apollo/client";
 import {
@@ -10,7 +11,10 @@ import {
   ResponseProvider,
 } from "./Response.provider";
 
-export type ProjectItem = Pick<Project, "name">;
+export type TechnologyItem = Pick<Technology, "name">;
+export type ProjectItem = Pick<Project, "name" | "body" | "excerpt"> & {
+  technologies?: { items: TechnologyItem[] };
+};
 type GetProjectQueryType = {
   projectCollection: Pick<ProjectCollection, "items"> & {
     items?: ProjectItem[];
@@ -21,7 +25,9 @@ const GetProjectQuery = gql`
     projectCollection(where: $where) {
       items {
         name
-        technologiesCollection {
+        excerpt
+        body
+        technologies: technologiesCollection {
           items {
             ... on Technology {
               name

@@ -14,12 +14,20 @@
   @include heading;
   font-family: var(--font-seconday);
   font-size: 3rem;
+  line-height: .8;
+  margin-bottom: var(--space-2x);
 }
 
 @mixin heading2 {
   @include heading;
   font-family: var(--font-seconday);
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+  line-height: .8;
+  margin-bottom: var(--space-2x);
+}
+
+@mixin em {
+  font-size: 0.7rem;
 }
 
 @mixin link {

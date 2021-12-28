@@ -19,4 +19,12 @@
   a {
     @include typography.link;
   }
+
+  em {
+    @include typography.em;
+  }
+
+  img {
+    width: 100%;
+  }
 }

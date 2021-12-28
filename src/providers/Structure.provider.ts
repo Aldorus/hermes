@@ -50,13 +50,13 @@ const GetStructure = (): GetStructureResponse => {
     component: About,
     title: "Information about myself",
   });
-  if (data?.structureCollection?.items[0]?.projects) {
+  if (data?.structureCollection?.items[0]?.clients) {
     gridDefinition.push({
       component: Clients,
       title: "About my clients",
     });
   }
-  if (data?.structureCollection?.items[0]?.clients) {
+  if (data?.structureCollection?.items[0]?.projects) {
     gridDefinition.push({
       component: Projects,
       title: "About my project",

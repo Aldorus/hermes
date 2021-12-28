@@ -1,5 +1,5 @@
 @use "~sass-mq" as mq;
-@use 'tokens/mixins';
+@use "tokens/mixins";
 
 .App {
   --color-navigation: var(--color-primary);
@@ -9,6 +9,7 @@
   grid-template-columns: min-content 1fr;
   grid-gap: var(--space-4x);
   margin-bottom: var(--space-8x);
+  padding: 0 var(--space-4x);
 
   @include mq.mq($until: tablet) {
     grid-template-columns: 1fr;
@@ -20,18 +21,27 @@
 
   &--aside {
     display: block;
-    padding-left: calc(var(--space-8x) + var(--space-4x));
     padding-top: var(--space-2x);
+    padding-left: var(--space-4x);
     position: relative;
-    @include mixins.asideSpacer;
 
-    @include mq.mq($until: tablet) {
-      display: none;
+    @include mq.mq($from: tablet) {
+      padding-left: var(--space-8x);
+      @include mixins.asideSpacer;
+
+      &-content {
+        opacity: 0.4;
+      }
     }
   }
 
   &--main {
     padding: 0 var(--space-4x);
+
+    &-content {
+      @include mq.mq($from: tablet) {
+        padding-bottom: var(--space-8x);
+      }
+    }
   }
 }
-

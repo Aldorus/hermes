@@ -423,8 +423,9 @@ export type ImageTransformOptions = {
 /** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project) */
 export type Project = Entry & {
   __typename: 'Project';
-  active?: Maybe<Scalars['Boolean']>;
+  body?: Maybe<Scalars['String']>;
   contentfulMetadata: ContentfulMetadata;
+  excerpt?: Maybe<Scalars['String']>;
   linkedFrom?: Maybe<ProjectLinkingCollections>;
   name?: Maybe<Scalars['String']>;
   sys: Sys;
@@ -433,7 +434,13 @@ export type Project = Entry & {
 
 
 /** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project) */
-export type ProjectActiveArgs = {
+export type ProjectBodyArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project) */
+export type ProjectExcerptArgs = {
   locale?: InputMaybe<Scalars['String']>;
 };
 
@@ -469,10 +476,21 @@ export type ProjectCollection = {
 export type ProjectFilter = {
   AND?: InputMaybe<Array<InputMaybe<ProjectFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ProjectFilter>>>;
-  active?: InputMaybe<Scalars['Boolean']>;
-  active_exists?: InputMaybe<Scalars['Boolean']>;
-  active_not?: InputMaybe<Scalars['Boolean']>;
+  body?: InputMaybe<Scalars['String']>;
+  body_contains?: InputMaybe<Scalars['String']>;
+  body_exists?: InputMaybe<Scalars['Boolean']>;
+  body_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  body_not?: InputMaybe<Scalars['String']>;
+  body_not_contains?: InputMaybe<Scalars['String']>;
+  body_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  excerpt?: InputMaybe<Scalars['String']>;
+  excerpt_contains?: InputMaybe<Scalars['String']>;
+  excerpt_exists?: InputMaybe<Scalars['Boolean']>;
+  excerpt_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  excerpt_not?: InputMaybe<Scalars['String']>;
+  excerpt_not_contains?: InputMaybe<Scalars['String']>;
+  excerpt_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   name?: InputMaybe<Scalars['String']>;
   name_contains?: InputMaybe<Scalars['String']>;
   name_exists?: InputMaybe<Scalars['Boolean']>;
@@ -498,8 +516,6 @@ export type ProjectLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum ProjectOrder {
-  ActiveAsc = 'active_ASC',
-  ActiveDesc = 'active_DESC',
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
@@ -1197,8 +1213,9 @@ export interface HexColorScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 }
 
 export type ProjectResolvers<ContextType = any, ParentType extends ResolversParentTypes['Project'] = ResolversParentTypes['Project']> = {
-  active?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<ProjectActiveArgs, never>>;
+  body?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ProjectBodyArgs, never>>;
   contentfulMetadata?: Resolver<ResolversTypes['ContentfulMetadata'], ParentType, ContextType>;
+  excerpt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ProjectExcerptArgs, never>>;
   linkedFrom?: Resolver<Maybe<ResolversTypes['ProjectLinkingCollections']>, ParentType, ContextType, RequireFields<ProjectLinkedFromArgs, never>>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ProjectNameArgs, never>>;
   sys?: Resolver<ResolversTypes['Sys'], ParentType, ContextType>;

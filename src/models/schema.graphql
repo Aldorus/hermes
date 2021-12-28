@@ -381,8 +381,9 @@ input ImageTransformOptions {
 [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project)
 """
 type Project implements Entry {
-  active(locale: String): Boolean
+  body(locale: String): String
   contentfulMetadata: ContentfulMetadata!
+  excerpt(locale: String): String
   linkedFrom(allowedLocales: [String]): ProjectLinkingCollections
   name(locale: String): String
   sys: Sys!
@@ -399,10 +400,21 @@ type ProjectCollection {
 input ProjectFilter {
   AND: [ProjectFilter]
   OR: [ProjectFilter]
-  active: Boolean
-  active_exists: Boolean
-  active_not: Boolean
+  body: String
+  body_contains: String
+  body_exists: Boolean
+  body_in: [String]
+  body_not: String
+  body_not_contains: String
+  body_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  excerpt: String
+  excerpt_contains: String
+  excerpt_exists: Boolean
+  excerpt_in: [String]
+  excerpt_not: String
+  excerpt_not_contains: String
+  excerpt_not_in: [String]
   name: String
   name_contains: String
   name_exists: Boolean
@@ -419,8 +431,6 @@ type ProjectLinkingCollections {
 }
 
 enum ProjectOrder {
-  active_ASC
-  active_DESC
   name_ASC
   name_DESC
   sys_firstPublishedAt_ASC

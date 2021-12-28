@@ -11,16 +11,21 @@ const App: React.FC = () => {
   const { structure } = StructureProvider.get();
   return (
     <div className={namespaces.blocksNames()}>
-      <Navigation className={namespaces.elementNames("aside")} />
+      <Navigation
+        className={namespaces.elementNames("aside", "aside-navigation")}
+      />
       <Introduction id="introduction" />
       {structure?.map(({ component: Component }, index) => (
         <React.Fragment key={index}>
-          <Text className={namespaces.elementNames("aside")} variant="light">
+          <Text
+            className={namespaces.elementNames("aside", "aside-content")}
+            variant="light"
+          >
             0{index + 1}.&nbsp;&lt;{Component.displayName}/&gt;
           </Text>
           <Component
             id={Component.displayName?.toLowerCase()}
-            className={namespaces.elementNames("main")}
+            className={namespaces.elementNames("main", "main-content")}
           />
         </React.Fragment>
       ))}
