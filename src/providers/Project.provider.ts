@@ -1,4 +1,5 @@
 import {
+  Asset,
   Project,
   ProjectCollection,
   ProjectFilter,
@@ -11,9 +12,11 @@ import {
   ResponseProvider,
 } from "./Response.provider";
 
+export type AssetItem = Pick<Asset, "url" | "title">;
 export type TechnologyItem = Pick<Technology, "name">;
 export type ProjectItem = Pick<Project, "name" | "body" | "excerpt"> & {
   technologies?: { items: TechnologyItem[] };
+  mockups?: { items: AssetItem[] };
 };
 type GetProjectQueryType = {
   projectCollection: Pick<ProjectCollection, "items"> & {
@@ -24,13 +27,28 @@ const GetProjectQuery = gql`
   query GetProjectQuery($where: ProjectFilter) {
     projectCollection(where: $where) {
       items {
+        sys {
+          id
+        }
         name
         excerpt
         body
-        technologies: technologiesCollection {
+        mockups: mockupsCollection(limit: 20) {
+          items {
+            sys {
+              id
+            }
+            url
+            title
+          }
+        }
+        technologies: technologiesCollection(limit: 20) {
           items {
             ... on Technology {
               name
+              sys {
+                id
+              }
             }
           }
         }

@@ -91,6 +91,8 @@ input AssetFilter {
 
 type AssetLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  mockupCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): MockupCollection
+  projectCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectCollection
 }
 
 enum AssetOrder {
@@ -378,6 +380,56 @@ input ImageTransformOptions {
 }
 
 """
+[See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/mockup)
+"""
+type Mockup implements Entry {
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): MockupLinkingCollections
+  media(locale: String, preview: Boolean): Asset
+  sys: Sys!
+  title(locale: String): String
+}
+
+type MockupCollection {
+  items: [Mockup]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input MockupFilter {
+  AND: [MockupFilter]
+  OR: [MockupFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  media_exists: Boolean
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type MockupLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum MockupOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+"""
 [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project)
 """
 type Project implements Entry {
@@ -385,6 +437,7 @@ type Project implements Entry {
   contentfulMetadata: ContentfulMetadata!
   excerpt(locale: String): String
   linkedFrom(allowedLocales: [String]): ProjectLinkingCollections
+  mockupsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
   name(locale: String): String
   sys: Sys!
   technologiesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectTechnologiesCollection
@@ -415,6 +468,7 @@ input ProjectFilter {
   excerpt_not: String
   excerpt_not_contains: String
   excerpt_not_in: [String]
+  mockupsCollection_exists: Boolean
   name: String
   name_contains: String
   name_exists: Boolean
@@ -444,7 +498,7 @@ enum ProjectOrder {
 }
 
 type ProjectTechnologiesCollection {
-  items: [Entry]!
+  items: [Technology]!
   limit: Int!
   skip: Int!
   total: Int!
@@ -461,6 +515,8 @@ type Query {
   client(id: String!, locale: String, preview: Boolean): Client
   clientCollection(limit: Int = 100, locale: String, order: [ClientOrder], preview: Boolean, skip: Int = 0, where: ClientFilter): ClientCollection
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
+  mockup(id: String!, locale: String, preview: Boolean): Mockup
+  mockupCollection(limit: Int = 100, locale: String, order: [MockupOrder], preview: Boolean, skip: Int = 0, where: MockupFilter): MockupCollection
   project(id: String!, locale: String, preview: Boolean): Project
   projectCollection(limit: Int = 100, locale: String, order: [ProjectOrder], preview: Boolean, skip: Int = 0, where: ProjectFilter): ProjectCollection
   structure(id: String!, locale: String, preview: Boolean): Structure
@@ -475,6 +531,7 @@ type Query {
 [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/structure)
 """
 type Structure implements Entry {
+  available(locale: String): Boolean
   clients(locale: String): Boolean
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): StructureLinkingCollections
@@ -492,6 +549,9 @@ type StructureCollection {
 input StructureFilter {
   AND: [StructureFilter]
   OR: [StructureFilter]
+  available: Boolean
+  available_exists: Boolean
+  available_not: Boolean
   clients: Boolean
   clients_exists: Boolean
   clients_not: Boolean
@@ -507,6 +567,8 @@ type StructureLinkingCollections {
 }
 
 enum StructureOrder {
+  available_ASC
+  available_DESC
   clients_ASC
   clients_DESC
   projects_ASC
@@ -600,6 +662,7 @@ input TechnologyFilter {
 
 type TechnologyLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  projectCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectCollection
 }
 
 enum TechnologyOrder {

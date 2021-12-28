@@ -9,6 +9,7 @@ import { Heading } from "../../atom/Heading/Heading";
 import "./_Projects.scss";
 import { Markdown } from "../../atom/Typography/Markdown";
 import { Article, ArticleProps } from "../../atom/Article/Article";
+import { Image } from "../../atom/Image/Image";
 
 type ProjectItemProps = ArticleProps & {
   project: ProjectItem;
@@ -36,6 +37,11 @@ const ProjectItemList: React.FC<ProjectItemProps> = ({ project, ...props }) => {
         ))}
       </div>
       <Markdown variant={"light"}>{project.excerpt || ""}</Markdown>
+      <div>
+        {project.mockups?.items.map((mockup) => (
+          <Image src={mockup.url || ""} title={mockup.title || ""} />
+        ))}
+      </div>
       <Markdown variant={"light"}>{project.body || ""}</Markdown>
     </Article>
   );

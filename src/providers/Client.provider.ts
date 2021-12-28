@@ -20,6 +20,9 @@ const GetClientQuery = gql`
   query GetClientQuery($where: ClientFilter) {
     clientCollection(where: $where) {
       items {
+        sys {
+          id
+        }
         name
         technologiesCollection {
           items {

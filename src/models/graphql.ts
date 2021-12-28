@@ -135,10 +135,28 @@ export type AssetFilter = {
 export type AssetLinkingCollections = {
   __typename: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  mockupCollection?: Maybe<MockupCollection>;
+  projectCollection?: Maybe<ProjectCollection>;
 };
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type AssetLinkingCollectionsMockupCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type AssetLinkingCollectionsProjectCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
@@ -420,6 +438,84 @@ export type ImageTransformOptions = {
   width?: InputMaybe<Scalars['Dimension']>;
 };
 
+/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/mockup) */
+export type Mockup = Entry & {
+  __typename: 'Mockup';
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<MockupLinkingCollections>;
+  media?: Maybe<Asset>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/mockup) */
+export type MockupLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/mockup) */
+export type MockupMediaArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/mockup) */
+export type MockupTitleArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type MockupCollection = {
+  __typename: 'MockupCollection';
+  items: Array<Maybe<Mockup>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type MockupFilter = {
+  AND?: InputMaybe<Array<InputMaybe<MockupFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<MockupFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  media_exists?: InputMaybe<Scalars['Boolean']>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']>;
+  title_contains?: InputMaybe<Scalars['String']>;
+  title_exists?: InputMaybe<Scalars['Boolean']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title_not?: InputMaybe<Scalars['String']>;
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type MockupLinkingCollections = {
+  __typename: 'MockupLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type MockupLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export enum MockupOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
 /** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project) */
 export type Project = Entry & {
   __typename: 'Project';
@@ -427,6 +523,7 @@ export type Project = Entry & {
   contentfulMetadata: ContentfulMetadata;
   excerpt?: Maybe<Scalars['String']>;
   linkedFrom?: Maybe<ProjectLinkingCollections>;
+  mockupsCollection?: Maybe<AssetCollection>;
   name?: Maybe<Scalars['String']>;
   sys: Sys;
   technologiesCollection?: Maybe<ProjectTechnologiesCollection>;
@@ -448,6 +545,15 @@ export type ProjectExcerptArgs = {
 /** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project) */
 export type ProjectLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project) */
+export type ProjectMockupsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -491,6 +597,7 @@ export type ProjectFilter = {
   excerpt_not?: InputMaybe<Scalars['String']>;
   excerpt_not_contains?: InputMaybe<Scalars['String']>;
   excerpt_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  mockupsCollection_exists?: InputMaybe<Scalars['Boolean']>;
   name?: InputMaybe<Scalars['String']>;
   name_contains?: InputMaybe<Scalars['String']>;
   name_exists?: InputMaybe<Scalars['Boolean']>;
@@ -530,7 +637,7 @@ export enum ProjectOrder {
 
 export type ProjectTechnologiesCollection = {
   __typename: 'ProjectTechnologiesCollection';
-  items: Array<Maybe<Entry>>;
+  items: Array<Maybe<Technology>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
   total: Scalars['Int'];
@@ -543,6 +650,8 @@ export type Query = {
   client?: Maybe<Client>;
   clientCollection?: Maybe<ClientCollection>;
   entryCollection?: Maybe<EntryCollection>;
+  mockup?: Maybe<Mockup>;
+  mockupCollection?: Maybe<MockupCollection>;
   project?: Maybe<Project>;
   projectCollection?: Maybe<ProjectCollection>;
   structure?: Maybe<Structure>;
@@ -595,6 +704,23 @@ export type QueryEntryCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<EntryFilter>;
+};
+
+
+export type QueryMockupArgs = {
+  id: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryMockupCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<MockupOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<MockupFilter>;
 };
 
 
@@ -668,11 +794,18 @@ export type QueryTypographyCollectionArgs = {
 /** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/structure) */
 export type Structure = Entry & {
   __typename: 'Structure';
+  available?: Maybe<Scalars['Boolean']>;
   clients?: Maybe<Scalars['Boolean']>;
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<StructureLinkingCollections>;
   projects?: Maybe<Scalars['Boolean']>;
   sys: Sys;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/structure) */
+export type StructureAvailableArgs = {
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -704,6 +837,9 @@ export type StructureCollection = {
 export type StructureFilter = {
   AND?: InputMaybe<Array<InputMaybe<StructureFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<StructureFilter>>>;
+  available?: InputMaybe<Scalars['Boolean']>;
+  available_exists?: InputMaybe<Scalars['Boolean']>;
+  available_not?: InputMaybe<Scalars['Boolean']>;
   clients?: InputMaybe<Scalars['Boolean']>;
   clients_exists?: InputMaybe<Scalars['Boolean']>;
   clients_not?: InputMaybe<Scalars['Boolean']>;
@@ -728,6 +864,8 @@ export type StructureLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum StructureOrder {
+  AvailableAsc = 'available_ASC',
+  AvailableDesc = 'available_DESC',
   ClientsAsc = 'clients_ASC',
   ClientsDesc = 'clients_DESC',
   ProjectsAsc = 'projects_ASC',
@@ -835,10 +973,19 @@ export type TechnologyFilter = {
 export type TechnologyLinkingCollections = {
   __typename: 'TechnologyLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  projectCollection?: Maybe<ProjectCollection>;
 };
 
 
 export type TechnologyLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type TechnologyLinkingCollectionsProjectCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
@@ -1028,7 +1175,7 @@ export type ResolversTypes = {
   ContentfulTag: ResolverTypeWrapper<ContentfulTag>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   Dimension: ResolverTypeWrapper<Scalars['Dimension']>;
-  Entry: ResolversTypes['Client'] | ResolversTypes['Project'] | ResolversTypes['Structure'] | ResolversTypes['Technology'] | ResolversTypes['Typography'];
+  Entry: ResolversTypes['Client'] | ResolversTypes['Mockup'] | ResolversTypes['Project'] | ResolversTypes['Structure'] | ResolversTypes['Technology'] | ResolversTypes['Typography'];
   EntryCollection: ResolverTypeWrapper<EntryCollection>;
   EntryFilter: EntryFilter;
   EntryOrder: EntryOrder;
@@ -1039,6 +1186,11 @@ export type ResolversTypes = {
   ImageResizeStrategy: ImageResizeStrategy;
   ImageTransformOptions: ImageTransformOptions;
   Int: ResolverTypeWrapper<Scalars['Int']>;
+  Mockup: ResolverTypeWrapper<Mockup>;
+  MockupCollection: ResolverTypeWrapper<MockupCollection>;
+  MockupFilter: MockupFilter;
+  MockupLinkingCollections: ResolverTypeWrapper<MockupLinkingCollections>;
+  MockupOrder: MockupOrder;
   Project: ResolverTypeWrapper<Project>;
   ProjectCollection: ResolverTypeWrapper<ProjectCollection>;
   ProjectFilter: ProjectFilter;
@@ -1085,13 +1237,17 @@ export type ResolversParentTypes = {
   ContentfulTag: ContentfulTag;
   DateTime: Scalars['DateTime'];
   Dimension: Scalars['Dimension'];
-  Entry: ResolversParentTypes['Client'] | ResolversParentTypes['Project'] | ResolversParentTypes['Structure'] | ResolversParentTypes['Technology'] | ResolversParentTypes['Typography'];
+  Entry: ResolversParentTypes['Client'] | ResolversParentTypes['Mockup'] | ResolversParentTypes['Project'] | ResolversParentTypes['Structure'] | ResolversParentTypes['Technology'] | ResolversParentTypes['Typography'];
   EntryCollection: EntryCollection;
   EntryFilter: EntryFilter;
   Float: Scalars['Float'];
   HexColor: Scalars['HexColor'];
   ImageTransformOptions: ImageTransformOptions;
   Int: Scalars['Int'];
+  Mockup: Mockup;
+  MockupCollection: MockupCollection;
+  MockupFilter: MockupFilter;
+  MockupLinkingCollections: MockupLinkingCollections;
   Project: Project;
   ProjectCollection: ProjectCollection;
   ProjectFilter: ProjectFilter;
@@ -1141,6 +1297,8 @@ export type AssetCollectionResolvers<ContextType = any, ParentType extends Resol
 
 export type AssetLinkingCollectionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['AssetLinkingCollections'] = ResolversParentTypes['AssetLinkingCollections']> = {
   entryCollection?: Resolver<Maybe<ResolversTypes['EntryCollection']>, ParentType, ContextType, RequireFields<AssetLinkingCollectionsEntryCollectionArgs, 'limit' | 'skip'>>;
+  mockupCollection?: Resolver<Maybe<ResolversTypes['MockupCollection']>, ParentType, ContextType, RequireFields<AssetLinkingCollectionsMockupCollectionArgs, 'limit' | 'skip'>>;
+  projectCollection?: Resolver<Maybe<ResolversTypes['ProjectCollection']>, ParentType, ContextType, RequireFields<AssetLinkingCollectionsProjectCollectionArgs, 'limit' | 'skip'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1195,7 +1353,7 @@ export interface DimensionScalarConfig extends GraphQLScalarTypeConfig<Resolvers
 }
 
 export type EntryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Entry'] = ResolversParentTypes['Entry']> = {
-  __resolveType: TypeResolveFn<'Client' | 'Project' | 'Structure' | 'Technology' | 'Typography', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'Client' | 'Mockup' | 'Project' | 'Structure' | 'Technology' | 'Typography', ParentType, ContextType>;
   contentfulMetadata?: Resolver<ResolversTypes['ContentfulMetadata'], ParentType, ContextType>;
   sys?: Resolver<ResolversTypes['Sys'], ParentType, ContextType>;
 };
@@ -1212,11 +1370,34 @@ export interface HexColorScalarConfig extends GraphQLScalarTypeConfig<ResolversT
   name: 'HexColor';
 }
 
+export type MockupResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mockup'] = ResolversParentTypes['Mockup']> = {
+  contentfulMetadata?: Resolver<ResolversTypes['ContentfulMetadata'], ParentType, ContextType>;
+  linkedFrom?: Resolver<Maybe<ResolversTypes['MockupLinkingCollections']>, ParentType, ContextType, RequireFields<MockupLinkedFromArgs, never>>;
+  media?: Resolver<Maybe<ResolversTypes['Asset']>, ParentType, ContextType, RequireFields<MockupMediaArgs, never>>;
+  sys?: Resolver<ResolversTypes['Sys'], ParentType, ContextType>;
+  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MockupTitleArgs, never>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MockupCollectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['MockupCollection'] = ResolversParentTypes['MockupCollection']> = {
+  items?: Resolver<Array<Maybe<ResolversTypes['Mockup']>>, ParentType, ContextType>;
+  limit?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  skip?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  total?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MockupLinkingCollectionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['MockupLinkingCollections'] = ResolversParentTypes['MockupLinkingCollections']> = {
+  entryCollection?: Resolver<Maybe<ResolversTypes['EntryCollection']>, ParentType, ContextType, RequireFields<MockupLinkingCollectionsEntryCollectionArgs, 'limit' | 'skip'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type ProjectResolvers<ContextType = any, ParentType extends ResolversParentTypes['Project'] = ResolversParentTypes['Project']> = {
   body?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ProjectBodyArgs, never>>;
   contentfulMetadata?: Resolver<ResolversTypes['ContentfulMetadata'], ParentType, ContextType>;
   excerpt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ProjectExcerptArgs, never>>;
   linkedFrom?: Resolver<Maybe<ResolversTypes['ProjectLinkingCollections']>, ParentType, ContextType, RequireFields<ProjectLinkedFromArgs, never>>;
+  mockupsCollection?: Resolver<Maybe<ResolversTypes['AssetCollection']>, ParentType, ContextType, RequireFields<ProjectMockupsCollectionArgs, 'limit' | 'skip'>>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ProjectNameArgs, never>>;
   sys?: Resolver<ResolversTypes['Sys'], ParentType, ContextType>;
   technologiesCollection?: Resolver<Maybe<ResolversTypes['ProjectTechnologiesCollection']>, ParentType, ContextType, RequireFields<ProjectTechnologiesCollectionArgs, 'limit' | 'skip'>>;
@@ -1237,7 +1418,7 @@ export type ProjectLinkingCollectionsResolvers<ContextType = any, ParentType ext
 };
 
 export type ProjectTechnologiesCollectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ProjectTechnologiesCollection'] = ResolversParentTypes['ProjectTechnologiesCollection']> = {
-  items?: Resolver<Array<Maybe<ResolversTypes['Entry']>>, ParentType, ContextType>;
+  items?: Resolver<Array<Maybe<ResolversTypes['Technology']>>, ParentType, ContextType>;
   limit?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   skip?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   total?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -1254,6 +1435,8 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   client?: Resolver<Maybe<ResolversTypes['Client']>, ParentType, ContextType, RequireFields<QueryClientArgs, 'id'>>;
   clientCollection?: Resolver<Maybe<ResolversTypes['ClientCollection']>, ParentType, ContextType, RequireFields<QueryClientCollectionArgs, 'limit' | 'skip'>>;
   entryCollection?: Resolver<Maybe<ResolversTypes['EntryCollection']>, ParentType, ContextType, RequireFields<QueryEntryCollectionArgs, 'limit' | 'skip'>>;
+  mockup?: Resolver<Maybe<ResolversTypes['Mockup']>, ParentType, ContextType, RequireFields<QueryMockupArgs, 'id'>>;
+  mockupCollection?: Resolver<Maybe<ResolversTypes['MockupCollection']>, ParentType, ContextType, RequireFields<QueryMockupCollectionArgs, 'limit' | 'skip'>>;
   project?: Resolver<Maybe<ResolversTypes['Project']>, ParentType, ContextType, RequireFields<QueryProjectArgs, 'id'>>;
   projectCollection?: Resolver<Maybe<ResolversTypes['ProjectCollection']>, ParentType, ContextType, RequireFields<QueryProjectCollectionArgs, 'limit' | 'skip'>>;
   structure?: Resolver<Maybe<ResolversTypes['Structure']>, ParentType, ContextType, RequireFields<QueryStructureArgs, 'id'>>;
@@ -1265,6 +1448,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type StructureResolvers<ContextType = any, ParentType extends ResolversParentTypes['Structure'] = ResolversParentTypes['Structure']> = {
+  available?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<StructureAvailableArgs, never>>;
   clients?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<StructureClientsArgs, never>>;
   contentfulMetadata?: Resolver<ResolversTypes['ContentfulMetadata'], ParentType, ContextType>;
   linkedFrom?: Resolver<Maybe<ResolversTypes['StructureLinkingCollections']>, ParentType, ContextType, RequireFields<StructureLinkedFromArgs, never>>;
@@ -1314,6 +1498,7 @@ export type TechnologyCollectionResolvers<ContextType = any, ParentType extends 
 
 export type TechnologyLinkingCollectionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['TechnologyLinkingCollections'] = ResolversParentTypes['TechnologyLinkingCollections']> = {
   entryCollection?: Resolver<Maybe<ResolversTypes['EntryCollection']>, ParentType, ContextType, RequireFields<TechnologyLinkingCollectionsEntryCollectionArgs, 'limit' | 'skip'>>;
+  projectCollection?: Resolver<Maybe<ResolversTypes['ProjectCollection']>, ParentType, ContextType, RequireFields<TechnologyLinkingCollectionsProjectCollectionArgs, 'limit' | 'skip'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1354,6 +1539,9 @@ export type Resolvers<ContextType = any> = {
   Entry?: EntryResolvers<ContextType>;
   EntryCollection?: EntryCollectionResolvers<ContextType>;
   HexColor?: GraphQLScalarType;
+  Mockup?: MockupResolvers<ContextType>;
+  MockupCollection?: MockupCollectionResolvers<ContextType>;
+  MockupLinkingCollections?: MockupLinkingCollectionsResolvers<ContextType>;
   Project?: ProjectResolvers<ContextType>;
   ProjectCollection?: ProjectCollectionResolvers<ContextType>;
   ProjectLinkingCollections?: ProjectLinkingCollectionsResolvers<ContextType>;

@@ -20,6 +20,9 @@ const GetTypographyQuery = gql`
   query GetTypographyQuery($where: TypographyFilter) {
     typographyCollection(where: $where) {
       items {
+        sys {
+          id
+        }
         content
       }
     }

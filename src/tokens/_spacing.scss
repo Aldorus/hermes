@@ -1,5 +1,6 @@
 :root {
   --space-base: 4px;
+  --space-1x: var(--space-base);
   --space-2x: calc(var(--space-base) * 2);
   --space-3x: calc(var(--space-base) * 3);
   --space-4x: calc(var(--space-base) * 4);

@@ -25,6 +25,9 @@ const GetStructureQuery = gql`
   query GetStructureQuery {
     structureCollection {
       items {
+        sys {
+          id
+        }
         clients
         projects
       }
