@@ -13,7 +13,11 @@ export const Markdown: React.FC<MarkdownProps> = ({
 }) => {
   const namespace = BEMClassName(Markdown, props.className);
   return (
-    <ReactMarkdown {...props} className={namespace.blocksNames({ variant })} />
+    <ReactMarkdown
+      linkTarget={"_blank"}
+      className={namespace.blocksNames({ variant })}
+      {...props}
+    />
   );
 };
 Markdown.displayName = "Markdown";
