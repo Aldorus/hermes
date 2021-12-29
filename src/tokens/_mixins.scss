@@ -11,3 +11,11 @@
     width: 1px;
   }
 }
+
+@mixin pageLayout {
+  position: relative;
+  display: grid;
+  grid-gap: var(--space-4x);
+  margin-bottom: var(--space-8x);
+  padding: 0 var(--space-4x);
+}

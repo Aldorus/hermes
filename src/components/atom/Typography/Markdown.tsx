@@ -2,6 +2,7 @@ import { BEMClassName } from "../../../commons/bem/bem";
 import ReactMarkdown from "react-markdown";
 import React from "react";
 import { ReactMarkdownOptions } from "react-markdown/lib/react-markdown";
+import rehypeRaw from "rehype-raw";
 import "./_Markdown.scss";
 
 type MarkdownProps = ReactMarkdownOptions & {
@@ -15,6 +16,7 @@ export const Markdown: React.FC<MarkdownProps> = ({
   return (
     <ReactMarkdown
       linkTarget={"_blank"}
+      rehypePlugins={[rehypeRaw]}
       className={namespace.blocksNames({ variant })}
       {...props}
     />

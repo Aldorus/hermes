@@ -2,14 +2,8 @@
 @use "../../../tokens/mixins";
 
 .Homepage {
-  --color-navigation: var(--color-primary);
-
-  position: relative;
-  display: grid;
+  @include mixins.pageLayout;
   grid-template-columns: min-content 1fr;
-  grid-gap: var(--space-4x);
-  margin-bottom: var(--space-8x);
-  padding: 0 var(--space-4x);
 
   @include mq.mq($until: tablet) {
     grid-template-columns: 1fr;
@@ -24,13 +18,13 @@
     padding-left: var(--space-4x);
     position: relative;
 
+    &-content {
+      opacity: 0.5;
+    }
+
     @include mq.mq($from: tablet) {
       padding-left: var(--space-8x);
       @include mixins.asideSpacer;
-
-      &-content {
-        opacity: 0.4;
-      }
     }
   }
 

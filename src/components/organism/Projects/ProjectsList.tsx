@@ -21,7 +21,11 @@ const ProjectsListItem: React.FC<ProjectsListItemProps> = ({
 }) => {
   const namespaces = BEMClassName(ProjectsListItem);
   return (
-    <Article className={namespaces.blocksNames()} {...props}>
+    <Article
+      className={namespaces.blocksNames()}
+      {...props}
+      id={project.slug || ""}
+    >
       <Heading
         level={4}
         variant={"light"}

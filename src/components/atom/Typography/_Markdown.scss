@@ -3,6 +3,8 @@
 
 .Markdown {
   @include variant.variant;
+  display: grid;
+  grid-gap: var(--space-4x);
 
   h1 {
     @include typography.heading1;
@@ -36,4 +38,14 @@
   img {
     width: 100%;
   }
+
+  &--figure {
+    width: 70%;
+    margin: auto;
+
+    figcaption {
+      @include typography.em;
+    }
+  }
+
 }

@@ -30,7 +30,9 @@
     "prettier": "^2.4.1",
     "sass": "^1.45.0",
     "sass-mq": "^5.0.1",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.2.1",
+    "react-router-hash-link": "^2.4.3",
+    "rehype-raw": "^6.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

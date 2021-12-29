@@ -9,6 +9,8 @@ import { ProjectProvider } from "../../../providers/Project.provider";
 import { Spinner } from "../../atom/Spinner/Spinner";
 import { useParams } from "react-router-dom";
 import { TechnologiesList } from "../../organism/TechnologiesList/TechnologiesList";
+import { Link } from "../../atom/Link/Link";
+import { Navigation } from "../../organism/Navigation/Navigation";
 
 type ProjectRouterProps = {
   slug: string;
@@ -24,7 +26,16 @@ export const Project: React.FC<ProjectProps> = ({ ...props }) => {
   return (
     <Spinner loading={loading}>
       <div className={namespaces.blocksNames()}>
-        <Article>
+        <Navigation className={namespaces.elementNames("navigation")} />
+        <Article className={namespaces.elementNames("content")}>
+          <Link to={`/#${project?.slug}`}>Go back</Link>
+          <Heading
+            level={4}
+            variant={"light"}
+            className={namespaces.elementNames("client")}
+          >
+            {project?.client?.name}
+          </Heading>
           <Heading
             level={2}
             variant={"light"}

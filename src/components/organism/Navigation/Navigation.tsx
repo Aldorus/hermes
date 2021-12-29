@@ -16,7 +16,7 @@ export const Navigation: React.FC<NavigationProps> = ({ ...props }) => {
       {structure?.map((def, index) => (
         <Link
           key={index}
-          href={`#${def.label.toLowerCase()}`}
+          to={`/#${def.label.toLowerCase()}`}
           title={def.title}
           tabIndex={index}
           hoverEffect={false}
