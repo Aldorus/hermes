@@ -29,7 +29,8 @@
     "@types/carbon-components-react": "^7.46.1",
     "prettier": "^2.4.1",
     "sass": "^1.45.0",
-    "sass-mq": "^5.0.1"
+    "sass-mq": "^5.0.1",
+    "react-router-dom": "^6.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

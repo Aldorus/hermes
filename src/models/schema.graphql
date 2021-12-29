@@ -122,12 +122,10 @@ enum AssetOrder {
 [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/client)
 """
 type Client implements Entry {
-  active(locale: String): Boolean
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ClientLinkingCollections
   name(locale: String): String
   sys: Sys!
-  technologiesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ClientTechnologiesCollection
 }
 
 type ClientCollection {
@@ -140,9 +138,6 @@ type ClientCollection {
 input ClientFilter {
   AND: [ClientFilter]
   OR: [ClientFilter]
-  active: Boolean
-  active_exists: Boolean
-  active_not: Boolean
   contentfulMetadata: ContentfulMetadataFilter
   name: String
   name_contains: String
@@ -152,16 +147,14 @@ input ClientFilter {
   name_not_contains: String
   name_not_in: [String]
   sys: SysFilter
-  technologiesCollection_exists: Boolean
 }
 
 type ClientLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  projectCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectCollection
 }
 
 enum ClientOrder {
-  active_ASC
-  active_DESC
   name_ASC
   name_DESC
   sys_firstPublishedAt_ASC
@@ -172,13 +165,6 @@ enum ClientOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
-}
-
-type ClientTechnologiesCollection {
-  items: [Entry]!
-  limit: Int!
-  skip: Int!
-  total: Int!
 }
 
 type ContentfulMetadata {
@@ -434,11 +420,13 @@ enum MockupOrder {
 """
 type Project implements Entry {
   body(locale: String): String
+  client(locale: String, preview: Boolean): Client
   contentfulMetadata: ContentfulMetadata!
   excerpt(locale: String): String
   linkedFrom(allowedLocales: [String]): ProjectLinkingCollections
   mockupsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
   name(locale: String): String
+  slug(locale: String): String
   sys: Sys!
   technologiesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectTechnologiesCollection
 }
@@ -460,6 +448,8 @@ input ProjectFilter {
   body_not: String
   body_not_contains: String
   body_not_in: [String]
+  client: cfClientNestedFilter
+  client_exists: Boolean
   contentfulMetadata: ContentfulMetadataFilter
   excerpt: String
   excerpt_contains: String
@@ -476,6 +466,13 @@ input ProjectFilter {
   name_not: String
   name_not_contains: String
   name_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
   sys: SysFilter
   technologiesCollection_exists: Boolean
 }
@@ -487,6 +484,8 @@ type ProjectLinkingCollections {
 enum ProjectOrder {
   name_ASC
   name_DESC
+  slug_ASC
+  slug_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -732,4 +731,18 @@ enum TypographyOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+input cfClientNestedFilter {
+  AND: [cfClientNestedFilter]
+  OR: [cfClientNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  sys: SysFilter
 }

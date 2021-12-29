@@ -189,18 +189,10 @@ export enum AssetOrder {
 /** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/client) */
 export type Client = Entry & {
   __typename: 'Client';
-  active?: Maybe<Scalars['Boolean']>;
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<ClientLinkingCollections>;
   name?: Maybe<Scalars['String']>;
   sys: Sys;
-  technologiesCollection?: Maybe<ClientTechnologiesCollection>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/client) */
-export type ClientActiveArgs = {
-  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -215,15 +207,6 @@ export type ClientNameArgs = {
   locale?: InputMaybe<Scalars['String']>;
 };
 
-
-/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/client) */
-export type ClientTechnologiesCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Scalars['String']>;
-  preview?: InputMaybe<Scalars['Boolean']>;
-  skip?: InputMaybe<Scalars['Int']>;
-};
-
 export type ClientCollection = {
   __typename: 'ClientCollection';
   items: Array<Maybe<Client>>;
@@ -235,9 +218,6 @@ export type ClientCollection = {
 export type ClientFilter = {
   AND?: InputMaybe<Array<InputMaybe<ClientFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ClientFilter>>>;
-  active?: InputMaybe<Scalars['Boolean']>;
-  active_exists?: InputMaybe<Scalars['Boolean']>;
-  active_not?: InputMaybe<Scalars['Boolean']>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   name?: InputMaybe<Scalars['String']>;
   name_contains?: InputMaybe<Scalars['String']>;
@@ -247,12 +227,12 @@ export type ClientFilter = {
   name_not_contains?: InputMaybe<Scalars['String']>;
   name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   sys?: InputMaybe<SysFilter>;
-  technologiesCollection_exists?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type ClientLinkingCollections = {
   __typename: 'ClientLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  projectCollection?: Maybe<ProjectCollection>;
 };
 
 
@@ -263,9 +243,15 @@ export type ClientLinkingCollectionsEntryCollectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
 };
 
+
+export type ClientLinkingCollectionsProjectCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
 export enum ClientOrder {
-  ActiveAsc = 'active_ASC',
-  ActiveDesc = 'active_DESC',
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
@@ -277,14 +263,6 @@ export enum ClientOrder {
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
-
-export type ClientTechnologiesCollection = {
-  __typename: 'ClientTechnologiesCollection';
-  items: Array<Maybe<Entry>>;
-  limit: Scalars['Int'];
-  skip: Scalars['Int'];
-  total: Scalars['Int'];
-};
 
 export type ContentfulMetadata = {
   __typename: 'ContentfulMetadata';
@@ -520,11 +498,13 @@ export enum MockupOrder {
 export type Project = Entry & {
   __typename: 'Project';
   body?: Maybe<Scalars['String']>;
+  client?: Maybe<Client>;
   contentfulMetadata: ContentfulMetadata;
   excerpt?: Maybe<Scalars['String']>;
   linkedFrom?: Maybe<ProjectLinkingCollections>;
   mockupsCollection?: Maybe<AssetCollection>;
   name?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
   sys: Sys;
   technologiesCollection?: Maybe<ProjectTechnologiesCollection>;
 };
@@ -533,6 +513,13 @@ export type Project = Entry & {
 /** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project) */
 export type ProjectBodyArgs = {
   locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project) */
+export type ProjectClientArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -564,6 +551,12 @@ export type ProjectNameArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project) */
+export type ProjectSlugArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project) */
 export type ProjectTechnologiesCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
@@ -589,6 +582,8 @@ export type ProjectFilter = {
   body_not?: InputMaybe<Scalars['String']>;
   body_not_contains?: InputMaybe<Scalars['String']>;
   body_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  client?: InputMaybe<CfClientNestedFilter>;
+  client_exists?: InputMaybe<Scalars['Boolean']>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   excerpt?: InputMaybe<Scalars['String']>;
   excerpt_contains?: InputMaybe<Scalars['String']>;
@@ -605,6 +600,13 @@ export type ProjectFilter = {
   name_not?: InputMaybe<Scalars['String']>;
   name_not_contains?: InputMaybe<Scalars['String']>;
   name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  slug?: InputMaybe<Scalars['String']>;
+  slug_contains?: InputMaybe<Scalars['String']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  slug_not?: InputMaybe<Scalars['String']>;
+  slug_not_contains?: InputMaybe<Scalars['String']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   sys?: InputMaybe<SysFilter>;
   technologiesCollection_exists?: InputMaybe<Scalars['Boolean']>;
 };
@@ -625,6 +627,8 @@ export type ProjectLinkingCollectionsEntryCollectionArgs = {
 export enum ProjectOrder {
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -1088,6 +1092,20 @@ export enum TypographyOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
+export type CfClientNestedFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CfClientNestedFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CfClientNestedFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  name?: InputMaybe<Scalars['String']>;
+  name_contains?: InputMaybe<Scalars['String']>;
+  name_exists?: InputMaybe<Scalars['Boolean']>;
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  name_not?: InputMaybe<Scalars['String']>;
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  sys?: InputMaybe<SysFilter>;
+};
+
 
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -1168,7 +1186,6 @@ export type ResolversTypes = {
   ClientFilter: ClientFilter;
   ClientLinkingCollections: ResolverTypeWrapper<ClientLinkingCollections>;
   ClientOrder: ClientOrder;
-  ClientTechnologiesCollection: ResolverTypeWrapper<ClientTechnologiesCollection>;
   ContentfulMetadata: ResolverTypeWrapper<ContentfulMetadata>;
   ContentfulMetadataFilter: ContentfulMetadataFilter;
   ContentfulMetadataTagsFilter: ContentfulMetadataTagsFilter;
@@ -1217,6 +1234,7 @@ export type ResolversTypes = {
   TypographyFilter: TypographyFilter;
   TypographyLinkingCollections: ResolverTypeWrapper<TypographyLinkingCollections>;
   TypographyOrder: TypographyOrder;
+  cfClientNestedFilter: CfClientNestedFilter;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -1230,7 +1248,6 @@ export type ResolversParentTypes = {
   ClientCollection: ClientCollection;
   ClientFilter: ClientFilter;
   ClientLinkingCollections: ClientLinkingCollections;
-  ClientTechnologiesCollection: ClientTechnologiesCollection;
   ContentfulMetadata: ContentfulMetadata;
   ContentfulMetadataFilter: ContentfulMetadataFilter;
   ContentfulMetadataTagsFilter: ContentfulMetadataTagsFilter;
@@ -1270,6 +1287,7 @@ export type ResolversParentTypes = {
   TypographyCollection: TypographyCollection;
   TypographyFilter: TypographyFilter;
   TypographyLinkingCollections: TypographyLinkingCollections;
+  cfClientNestedFilter: CfClientNestedFilter;
 };
 
 export type AssetResolvers<ContextType = any, ParentType extends ResolversParentTypes['Asset'] = ResolversParentTypes['Asset']> = {
@@ -1303,12 +1321,10 @@ export type AssetLinkingCollectionsResolvers<ContextType = any, ParentType exten
 };
 
 export type ClientResolvers<ContextType = any, ParentType extends ResolversParentTypes['Client'] = ResolversParentTypes['Client']> = {
-  active?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<ClientActiveArgs, never>>;
   contentfulMetadata?: Resolver<ResolversTypes['ContentfulMetadata'], ParentType, ContextType>;
   linkedFrom?: Resolver<Maybe<ResolversTypes['ClientLinkingCollections']>, ParentType, ContextType, RequireFields<ClientLinkedFromArgs, never>>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ClientNameArgs, never>>;
   sys?: Resolver<ResolversTypes['Sys'], ParentType, ContextType>;
-  technologiesCollection?: Resolver<Maybe<ResolversTypes['ClientTechnologiesCollection']>, ParentType, ContextType, RequireFields<ClientTechnologiesCollectionArgs, 'limit' | 'skip'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1322,14 +1338,7 @@ export type ClientCollectionResolvers<ContextType = any, ParentType extends Reso
 
 export type ClientLinkingCollectionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['ClientLinkingCollections'] = ResolversParentTypes['ClientLinkingCollections']> = {
   entryCollection?: Resolver<Maybe<ResolversTypes['EntryCollection']>, ParentType, ContextType, RequireFields<ClientLinkingCollectionsEntryCollectionArgs, 'limit' | 'skip'>>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type ClientTechnologiesCollectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ClientTechnologiesCollection'] = ResolversParentTypes['ClientTechnologiesCollection']> = {
-  items?: Resolver<Array<Maybe<ResolversTypes['Entry']>>, ParentType, ContextType>;
-  limit?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  skip?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  total?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  projectCollection?: Resolver<Maybe<ResolversTypes['ProjectCollection']>, ParentType, ContextType, RequireFields<ClientLinkingCollectionsProjectCollectionArgs, 'limit' | 'skip'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1394,11 +1403,13 @@ export type MockupLinkingCollectionsResolvers<ContextType = any, ParentType exte
 
 export type ProjectResolvers<ContextType = any, ParentType extends ResolversParentTypes['Project'] = ResolversParentTypes['Project']> = {
   body?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ProjectBodyArgs, never>>;
+  client?: Resolver<Maybe<ResolversTypes['Client']>, ParentType, ContextType, RequireFields<ProjectClientArgs, never>>;
   contentfulMetadata?: Resolver<ResolversTypes['ContentfulMetadata'], ParentType, ContextType>;
   excerpt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ProjectExcerptArgs, never>>;
   linkedFrom?: Resolver<Maybe<ResolversTypes['ProjectLinkingCollections']>, ParentType, ContextType, RequireFields<ProjectLinkedFromArgs, never>>;
   mockupsCollection?: Resolver<Maybe<ResolversTypes['AssetCollection']>, ParentType, ContextType, RequireFields<ProjectMockupsCollectionArgs, 'limit' | 'skip'>>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ProjectNameArgs, never>>;
+  slug?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ProjectSlugArgs, never>>;
   sys?: Resolver<ResolversTypes['Sys'], ParentType, ContextType>;
   technologiesCollection?: Resolver<Maybe<ResolversTypes['ProjectTechnologiesCollection']>, ParentType, ContextType, RequireFields<ProjectTechnologiesCollectionArgs, 'limit' | 'skip'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -1531,7 +1542,6 @@ export type Resolvers<ContextType = any> = {
   Client?: ClientResolvers<ContextType>;
   ClientCollection?: ClientCollectionResolvers<ContextType>;
   ClientLinkingCollections?: ClientLinkingCollectionsResolvers<ContextType>;
-  ClientTechnologiesCollection?: ClientTechnologiesCollectionResolvers<ContextType>;
   ContentfulMetadata?: ContentfulMetadataResolvers<ContextType>;
   ContentfulTag?: ContentfulTagResolvers<ContextType>;
   DateTime?: GraphQLScalarType;

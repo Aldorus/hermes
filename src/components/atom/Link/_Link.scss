@@ -1,5 +1,9 @@
-@use '../../../tokens/typography';
+@use "../../../tokens/typography";
 
 .Link {
   @include typography.link;
+
+  &__hoverEffect {
+    @include typography.linkHover;
+  }
 }

@@ -11,4 +11,12 @@
   &__h2 {
     @include typography.heading2;
   }
+
+  &__h3 {
+    @include typography.heading3;
+  }
+
+  &__h4 {
+    @include typography.heading4;
+  }
 }

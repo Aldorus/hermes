@@ -1,34 +1,24 @@
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./_App.scss";
-import { Introduction } from "./components/organism/Introduction/Introduction";
-import { Navigation } from "./components/organism/Navigation/Navigation";
-import { Text } from "./components/atom/Text/Text";
 import { BEMClassName } from "./commons/bem/bem";
-import { StructureProvider } from "./providers/Structure.provider";
+import { Homepage } from "./components/pages/Homepage/Homepage";
+import { Project } from "./components/pages/Project/Project";
 
-const App: React.FC = () => {
-  const namespaces = BEMClassName(App);
-  const { structure } = StructureProvider.get();
+type AppProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>;
+const App: React.FC<AppProps> = ({ ...props }) => {
+  const namespaces = BEMClassName(App, props.className);
   return (
-    <div className={namespaces.blocksNames()}>
-      <Navigation
-        className={namespaces.elementNames("aside", "aside-navigation")}
-      />
-      <Introduction id="introduction" />
-      {structure?.map(({ component: Component }, index) => (
-        <React.Fragment key={index}>
-          <Text
-            className={namespaces.elementNames("aside", "aside-content")}
-            variant="light"
-          >
-            0{index + 1}.&nbsp;&lt;{Component.displayName}/&gt;
-          </Text>
-          <Component
-            id={Component.displayName?.toLowerCase()}
-            className={namespaces.elementNames("main", "main-content")}
-          />
-        </React.Fragment>
-      ))}
+    <div className={namespaces.blocksNames()} {...props}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Homepage />}></Route>
+          <Route path="/projects/:projectId" element={<Project />}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };

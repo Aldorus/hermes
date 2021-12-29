@@ -10,14 +10,16 @@ import { gql, useQuery } from "@apollo/client";
 import {
   RequestCollectionProvider,
   ResponseProvider,
+  SystemId,
 } from "./Response.provider";
 
-export type AssetItem = Pick<Asset, "url" | "title">;
-export type TechnologyItem = Pick<Technology, "name">;
-export type ProjectItem = Pick<Project, "name" | "body" | "excerpt"> & {
-  technologies?: { items: TechnologyItem[] };
-  mockups?: { items: AssetItem[] };
-};
+export type AssetItem = SystemId & Pick<Asset, "url" | "title">;
+export type TechnologyItem = SystemId & Pick<Technology, "name">;
+export type ProjectItem = SystemId &
+  Pick<Project, "name" | "slug" | "body" | "excerpt" | "client"> & {
+    technologies?: { items: TechnologyItem[] };
+    mockups?: { items: AssetItem[] };
+  };
 type GetProjectQueryType = {
   projectCollection: Pick<ProjectCollection, "items"> & {
     items?: ProjectItem[];
@@ -31,6 +33,7 @@ const GetProjectQuery = gql`
           id
         }
         name
+        slug
         excerpt
         body
         mockups: mockupsCollection(limit: 20) {
@@ -41,6 +44,9 @@ const GetProjectQuery = gql`
             url
             title
           }
+        }
+        client {
+          name
         }
         technologies: technologiesCollection(limit: 20) {
           items {
@@ -58,16 +64,16 @@ const GetProjectQuery = gql`
 `;
 
 type GetProjectResponse = ResponseProvider & {
-  project?: Project;
+  project?: ProjectItem;
 };
-const GetProject = (name: string): GetProjectResponse => {
+const GetProject = (slug?: string): GetProjectResponse => {
   const { data, loading, error } = useQuery<
     GetProjectQueryType,
     RequestCollectionProvider<ProjectOrder, ProjectFilter>
   >(GetProjectQuery, {
     variables: {
       where: {
-        name,
+        slug,
       },
     },
   });

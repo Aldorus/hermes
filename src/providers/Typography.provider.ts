@@ -8,9 +8,10 @@ import { gql, useQuery } from "@apollo/client";
 import {
   RequestCollectionProvider,
   ResponseProvider,
+  SystemId,
 } from "./Response.provider";
 
-type TypographyItem = Pick<Typography, "content">;
+type TypographyItem = SystemId & Pick<Typography, "content">;
 type GetTypographyQueryType = {
   typographyCollection: Pick<TypographyCollection, "items"> & {
     items?: TypographyItem[];

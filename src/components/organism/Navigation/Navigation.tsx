@@ -16,12 +16,13 @@ export const Navigation: React.FC<NavigationProps> = ({ ...props }) => {
       {structure?.map((def, index) => (
         <Link
           key={index}
-          href={`#${def.component.displayName?.toLowerCase()}`}
+          href={`#${def.label.toLowerCase()}`}
           title={def.title}
           tabIndex={index}
+          hoverEffect={false}
           className={namespaces.elementNames("item")}
         >
-          0{index + 1}.&nbsp;&lt;{def.component.displayName}/&gt;
+          0{index + 1}.&nbsp;&lt;{def.label}/&gt;
         </Link>
       ))}
     </nav>

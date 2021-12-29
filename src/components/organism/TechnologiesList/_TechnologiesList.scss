@@ -1,0 +1,11 @@
+.TechnologiesList {
+  display: grid;
+  width: min-content;
+  grid-auto-flow: column;
+  grid-gap: var(--space-4x);
+
+  &--technology {
+    font-size: .7rem;
+    color: var(--color-primary);
+  }
+}

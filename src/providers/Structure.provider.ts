@@ -8,14 +8,15 @@ import { gql, useQuery } from "@apollo/client";
 import {
   RequestCollectionProvider,
   ResponseProvider,
+  SystemId,
 } from "./Response.provider";
 import { About } from "../components/organism/About/About";
 import { Contacts } from "../components/organism/Contact/Contacts";
 import { Clients } from "../components/organism/Clients/Clients";
-import { Projects } from "../components/organism/Projects/Projects";
+import { ProjectsList } from "../components/organism/Projects/ProjectsList";
 import React from "react";
 
-type StructureItem = Pick<Structure, "clients" | "projects">;
+type StructureItem = SystemId & Pick<Structure, "clients" | "projects">;
 type GetStructureQueryType = {
   structureCollection: Pick<StructureCollection, "items"> & {
     items?: StructureItem[];
@@ -37,6 +38,7 @@ const GetStructureQuery = gql`
 
 type GridItem = {
   component: React.FC<React.HTMLAttributes<HTMLElement>>;
+  label: string;
   title: string;
 };
 type GetStructureResponse = ResponseProvider & {
@@ -51,22 +53,26 @@ const GetStructure = (): GetStructureResponse => {
   const gridDefinition: GridItem[] = [];
   gridDefinition.push({
     component: About,
+    label: "About",
     title: "Information about myself",
   });
   if (data?.structureCollection?.items[0]?.clients) {
     gridDefinition.push({
       component: Clients,
+      label: "Clients",
       title: "About my clients",
     });
   }
   if (data?.structureCollection?.items[0]?.projects) {
     gridDefinition.push({
-      component: Projects,
+      component: ProjectsList,
+      label: "Projects",
       title: "About my project",
     });
   }
   gridDefinition.push({
     component: Contacts,
+    label: "Contacts",
     title: "How to contact me",
   });
 

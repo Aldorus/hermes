@@ -8,9 +8,10 @@ import { gql, useQuery } from "@apollo/client";
 import {
   RequestCollectionProvider,
   ResponseProvider,
+  SystemId,
 } from "./Response.provider";
 
-export type ClientItem = Pick<Client, "name">;
+export type ClientItem = SystemId & Pick<Client, "name">;
 type GetClientQueryType = {
   clientCollection: Pick<ClientCollection, "items"> & {
     items?: ClientItem[];

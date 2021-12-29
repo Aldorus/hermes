@@ -1,6 +1,6 @@
 //@import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;700&display=swap");
 //@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@400;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;700&family=Lato&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;700&family=Lato&display=swap");
 
 :root {
   --font-primary: "Zen Kaku Gothic Antique", sans-serif;
@@ -14,7 +14,7 @@
   @include heading;
   font-family: var(--font-seconday);
   font-size: 3rem;
-  line-height: .8;
+  line-height: 0.8;
   margin-bottom: var(--space-2x);
 }
 
@@ -22,7 +22,23 @@
   @include heading;
   font-family: var(--font-seconday);
   font-size: 1.7rem;
-  line-height: .8;
+  line-height: 0.8;
+  margin-bottom: var(--space-2x);
+}
+
+@mixin heading3 {
+  @include heading;
+  font-family: var(--font-seconday);
+  font-size: 1.2rem;
+  line-height: 0.8;
+  margin-bottom: var(--space-2x);
+}
+
+@mixin heading4 {
+  @include heading;
+  font-family: var(--font-seconday);
+  font-size: 1rem;
+  line-height: 0.8;
   margin-bottom: var(--space-2x);
 }
 
@@ -34,8 +50,26 @@
   text-decoration: none;
   color: var(--color-primary);
   font-size: 1em;
+  position: relative;
+  display: inline-block;
+}
 
-  &:hover {
-    border-bottom: 1px solid var(--color-primary);
+@mixin linkHover {
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: calc(-1 * var(--space-2x));
+    width: 100%;
+    height: 1px;
+    background: var(--color-primary);
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 0;
+    transform: scale(0, 1);
+  }
+
+  &:hover::after {
+    opacity: 1;
+    transform: scale(1);
   }
 }
