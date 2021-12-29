@@ -507,6 +507,7 @@ export type Project = Entry & {
   slug?: Maybe<Scalars['String']>;
   sys: Sys;
   technologiesCollection?: Maybe<ProjectTechnologiesCollection>;
+  weight?: Maybe<Scalars['Int']>;
 };
 
 
@@ -564,6 +565,12 @@ export type ProjectTechnologiesCollectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
 };
 
+
+/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/project) */
+export type ProjectWeightArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
 export type ProjectCollection = {
   __typename: 'ProjectCollection';
   items: Array<Maybe<Project>>;
@@ -609,6 +616,15 @@ export type ProjectFilter = {
   slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   sys?: InputMaybe<SysFilter>;
   technologiesCollection_exists?: InputMaybe<Scalars['Boolean']>;
+  weight?: InputMaybe<Scalars['Int']>;
+  weight_exists?: InputMaybe<Scalars['Boolean']>;
+  weight_gt?: InputMaybe<Scalars['Int']>;
+  weight_gte?: InputMaybe<Scalars['Int']>;
+  weight_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  weight_lt?: InputMaybe<Scalars['Int']>;
+  weight_lte?: InputMaybe<Scalars['Int']>;
+  weight_not?: InputMaybe<Scalars['Int']>;
+  weight_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
 };
 
 export type ProjectLinkingCollections = {
@@ -636,7 +652,9 @@ export enum ProjectOrder {
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  WeightAsc = 'weight_ASC',
+  WeightDesc = 'weight_DESC'
 }
 
 export type ProjectTechnologiesCollection = {
@@ -1412,6 +1430,7 @@ export type ProjectResolvers<ContextType = any, ParentType extends ResolversPare
   slug?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ProjectSlugArgs, never>>;
   sys?: Resolver<ResolversTypes['Sys'], ParentType, ContextType>;
   technologiesCollection?: Resolver<Maybe<ResolversTypes['ProjectTechnologiesCollection']>, ParentType, ContextType, RequireFields<ProjectTechnologiesCollectionArgs, 'limit' | 'skip'>>;
+  weight?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType, RequireFields<ProjectWeightArgs, never>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

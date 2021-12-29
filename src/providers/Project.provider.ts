@@ -26,8 +26,8 @@ type GetProjectQueryType = {
   };
 };
 const GetProjectQuery = gql`
-  query GetProjectQuery($where: ProjectFilter) {
-    projectCollection(where: $where) {
+  query GetProjectQuery($where: ProjectFilter, $order: [ProjectOrder]) {
+    projectCollection(where: $where, order: $order) {
       items {
         sys {
           id
@@ -88,8 +88,14 @@ type ListProjectsResponse = ResponseProvider & {
   projects?: ProjectItem[];
 };
 const ListProject = (): ListProjectsResponse => {
-  const { data, loading, error } =
-    useQuery<GetProjectQueryType>(GetProjectQuery);
+  const { data, loading, error } = useQuery<
+    GetProjectQueryType,
+    RequestCollectionProvider<ProjectOrder, ProjectFilter>
+  >(GetProjectQuery, {
+    variables: {
+      order: [ProjectOrder.WeightAsc],
+    },
+  });
   return {
     projects: data?.projectCollection?.items,
     loading,

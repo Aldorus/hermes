@@ -429,6 +429,7 @@ type Project implements Entry {
   slug(locale: String): String
   sys: Sys!
   technologiesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectTechnologiesCollection
+  weight(locale: String): Int
 }
 
 type ProjectCollection {
@@ -475,6 +476,15 @@ input ProjectFilter {
   slug_not_in: [String]
   sys: SysFilter
   technologiesCollection_exists: Boolean
+  weight: Int
+  weight_exists: Boolean
+  weight_gt: Int
+  weight_gte: Int
+  weight_in: [Int]
+  weight_lt: Int
+  weight_lte: Int
+  weight_not: Int
+  weight_not_in: [Int]
 }
 
 type ProjectLinkingCollections {
@@ -494,6 +504,8 @@ enum ProjectOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  weight_ASC
+  weight_DESC
 }
 
 type ProjectTechnologiesCollection {

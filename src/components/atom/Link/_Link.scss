@@ -2,6 +2,7 @@
 
 .Link {
   @include typography.link;
+  width: fit-content;
 
   &__hoverEffect {
     @include typography.linkHover;

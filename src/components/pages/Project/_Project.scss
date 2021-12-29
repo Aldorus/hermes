@@ -10,7 +10,13 @@
     top: 0;
   }
 
+  &--title {
+    margin-top: calc(-1 * var(--space-2x));
+  }
+
   &--content {
     padding-top: var(--space-8x);
+    display: grid;
+    grid-gap: var(--space-4x);
   }
 }

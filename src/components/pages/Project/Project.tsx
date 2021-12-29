@@ -3,14 +3,13 @@ import "./_Project.scss";
 import { BEMClassName } from "../../../commons/bem/bem";
 import { Heading } from "../../atom/Heading/Heading";
 import { Markdown } from "../../atom/Typography/Markdown";
-import { Image } from "../../atom/Image/Image";
+// import { Image } from "../../atom/Image/Image";
 import { Article } from "../../atom/Article/Article";
 import { ProjectProvider } from "../../../providers/Project.provider";
 import { Spinner } from "../../atom/Spinner/Spinner";
 import { useParams } from "react-router-dom";
 import { TechnologiesList } from "../../organism/TechnologiesList/TechnologiesList";
 import { Link } from "../../atom/Link/Link";
-import { Navigation } from "../../organism/Navigation/Navigation";
 
 type ProjectRouterProps = {
   slug: string;
@@ -26,9 +25,10 @@ export const Project: React.FC<ProjectProps> = ({ ...props }) => {
   return (
     <Spinner loading={loading}>
       <div className={namespaces.blocksNames()}>
-        <Navigation className={namespaces.elementNames("navigation")} />
-        <Article className={namespaces.elementNames("content")}>
+        <div className={namespaces.elementNames("navigation")}>
           <Link to={`/#${project?.slug}`}>Go back</Link>
+        </div>
+        <Article className={namespaces.elementNames("content")}>
           <Heading
             level={4}
             variant={"light"}
@@ -44,16 +44,15 @@ export const Project: React.FC<ProjectProps> = ({ ...props }) => {
             {project?.name}
           </Heading>
           <TechnologiesList technologies={project?.technologies} />
-          <Markdown variant={"light"}>{project?.excerpt || ""}</Markdown>
-          <div>
-            {project?.mockups?.items.map((mockup) => (
-              <Image
-                src={mockup.url || ""}
-                title={mockup.title || ""}
-                key={mockup.sys.id}
-              />
-            ))}
-          </div>
+          {/*<div>*/}
+          {/*  {project?.mockups?.items.map((mockup) => (*/}
+          {/*    <Image*/}
+          {/*      src={mockup.url || ""}*/}
+          {/*      title={mockup.title || ""}*/}
+          {/*      key={mockup.sys.id}*/}
+          {/*    />*/}
+          {/*  ))}*/}
+          {/*</div>*/}
           <Markdown variant={"light"}>{project?.body || ""}</Markdown>
         </Article>
       </div>

@@ -1,6 +1,6 @@
 .TechnologiesList {
   display: grid;
-  width: min-content;
+  width: fit-content;
   grid-auto-flow: column;
   grid-gap: var(--space-4x);
 
