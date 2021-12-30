@@ -27,14 +27,14 @@ export const BEMClassName = (
       modifiers = removeDuplicate(blocks)
         .flatMap((block) => block.split(" "))
         .flatMap((block) =>
-          modifierList.map((modifier) => `${block}__${modifier}`)
+          modifierList.map((modifier) => `${block}--${modifier}`)
         );
       return clx(blocks, modifiers);
     },
     elementNames: (...elementNames: (string | undefined)[]): string => {
       const splitBlocks = blocks.flatMap((block) => block.split(" "));
       const elements = splitBlocks.flatMap((block) =>
-        elementNames.map((elementName) => `${block}--${elementName}`)
+        elementNames.map((elementName) => `${block}__${elementName}`)
       );
       return clx(elements);
     },

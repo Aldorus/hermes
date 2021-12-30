@@ -4,7 +4,7 @@
   @include typography.link;
   width: fit-content;
 
-  &__hoverEffect {
+  &--hoverEffect {
     @include typography.linkHover;
   }
 }

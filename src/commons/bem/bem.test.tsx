@@ -9,7 +9,7 @@ describe("BEMClassName", () => {
     test("Should return the blockName when there is only the component name", () => {
       const namespace = BEMClassName(TestComponent);
       expect(namespace.blocksNames()).toEqual("TestComponent");
-      expect(namespace.elementNames("item")).toEqual("TestComponent--item");
+      expect(namespace.elementNames("item")).toEqual("TestComponent__item");
     });
 
     test("Should return the blockName and the classname when there is className overcharge", () => {
@@ -21,7 +21,7 @@ describe("BEMClassName", () => {
         "TestComponent ParentClassName ParentClassName2"
       );
       expect(namespace.elementNames("item")).toEqual(
-        "TestComponent--item ParentClassName--item ParentClassName2--item"
+        "TestComponent__item ParentClassName__item ParentClassName2__item"
       );
     });
   });
@@ -37,7 +37,7 @@ describe("BEMClassName", () => {
           modifierName: "modifier",
         })
       ).toEqual(
-        "TestComponent ParentClassName ParentClassName2 TestComponent__modifier ParentClassName__modifier ParentClassName2__modifier"
+        "TestComponent ParentClassName ParentClassName2 TestComponent--modifier ParentClassName--modifier ParentClassName2--modifier"
       );
     });
 
@@ -48,7 +48,7 @@ describe("BEMClassName", () => {
           modifierName: true,
         })
       ).toEqual(
-        "TestComponent ParentClassName TestComponent__modifierName ParentClassName__modifierName"
+        "TestComponent ParentClassName TestComponent--modifierName ParentClassName--modifierName"
       );
 
       expect(
@@ -62,7 +62,7 @@ describe("BEMClassName", () => {
       const namespace = BEMClassName(TestComponent, "ParentClassName");
       namespace.blocksNames({ size: "small" });
       expect(namespace.elementNames("item", "text")).toEqual(
-        "TestComponent--item TestComponent--text ParentClassName--item ParentClassName--text"
+        "TestComponent__item TestComponent__text ParentClassName__item ParentClassName__text"
       );
     });
   });

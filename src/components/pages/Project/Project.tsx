@@ -22,6 +22,11 @@ export const Project: React.FC<ProjectProps> = ({ ...props }) => {
   const namespaces = BEMClassName(Project);
   const { slug } = useParams<ProjectRouterProps>();
   const { project, loading } = ProjectProvider.get(slug);
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Spinner loading={loading}>
       <div className={namespaces.blocksNames()}>

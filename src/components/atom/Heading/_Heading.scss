@@ -4,19 +4,19 @@
 .Heading {
   @include variant.variant;
 
-  &__h1 {
+  &--h1 {
     @include typography.heading1;
   }
 
-  &__h2 {
+  &--h2 {
     @include typography.heading2;
   }
 
-  &__h3 {
+  &--h3 {
     @include typography.heading3;
   }
 
-  &__h4 {
+  &--h4 {
     @include typography.heading4;
   }
 }
