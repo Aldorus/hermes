@@ -6,7 +6,11 @@ export type ArticleProps = React.HTMLAttributes<HTMLElement> & {};
 export const Article: React.FC<ArticleProps> = ({ ...props }) => {
   const namespace = BEMClassName(Article, props.className);
   return (
-    <article {...props} className={namespace.blocksNames()}>
+    <article
+      data-test-id={Article.displayName}
+      {...props}
+      className={namespace.blocksNames()}
+    >
       {props.children}
     </article>
   );

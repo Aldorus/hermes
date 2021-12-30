@@ -1,8 +1,8 @@
 import React from "react";
-import { TypographyProvider } from "../../../providers/Typography.provider";
-import { BEMClassName } from "../../../commons/bem/bem";
+import { TypographyProvider } from "@providers";
+import { BEMClassName } from "@react/bem";
+import { Markdown } from "@components/atom";
 import "./_Introduction.scss";
-import { Markdown } from "../../atom/Typography/Markdown";
 
 type IntroductionProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,

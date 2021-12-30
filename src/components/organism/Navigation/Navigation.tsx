@@ -1,8 +1,8 @@
 import React from "react";
 import "./_Navigation.scss";
-import { BEMClassName } from "../../../commons/bem/bem";
-import { Link } from "../../atom/Link/Link";
-import { StructureProvider } from "../../../providers/Structure.provider";
+import { Link } from "@components/atom";
+import { StructureProvider } from "@providers";
+import { BEMClassName } from "@react/bem";
 
 type NavigationProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,

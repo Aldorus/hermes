@@ -25,7 +25,7 @@ type GetProjectQueryType = {
     items?: ProjectItem[];
   };
 };
-const GetProjectQuery = gql`
+export const GetProjectQuery = gql`
   query GetProjectQuery($where: ProjectFilter, $order: [ProjectOrder]) {
     projectCollection(where: $where, order: $order) {
       items {

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/atom": ["src/components/atom/index.ts"],
+      "@components/organism": ["src/components/organism/index.ts"],
+      "@components/pages": ["src/components/pages/index.ts"],
+      "@providers/mocks": ["src/providers/mocks/index.ts"],
+      "@providers": ["src/providers/index.ts"],
+      "@react/bem": ["src/commons/bem/bem.tsx"],
+      "src/*": ["src/*"]
+    }
+  }
+}

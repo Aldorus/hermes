@@ -1,9 +1,9 @@
 import * as React from "react";
 import { NavLinkProps } from "react-router-dom";
+import { BEMClassName } from "@react/bem";
 // @ts-ignore
 import { HashLink as NavLink } from "react-router-hash-link";
 import "./_Link.scss";
-import { BEMClassName } from "../../../commons/bem/bem";
 
 type ReactRouterLinkProps = NavLinkProps &
   React.AnchorHTMLAttributes<HTMLAnchorElement>;
@@ -17,10 +17,15 @@ export const Link: React.FC<LinkProps> = ({ hoverEffect = true, ...props }) => {
     <NavLink
       smooth
       {...(props as ReactRouterLinkProps)}
+      data-test-id={Link.displayName}
       className={namespaces.blocksNames({ hoverEffect })}
     />
   ) : (
-    <a {...(props as DefaultLinkProps)} className={namespaces.blocksNames()}>
+    <a
+      {...(props as DefaultLinkProps)}
+      className={namespaces.blocksNames()}
+      data-test-id={Link.displayName}
+    >
       {props.children}
     </a>
   );

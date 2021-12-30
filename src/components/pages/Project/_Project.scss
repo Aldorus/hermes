@@ -3,11 +3,14 @@
 
 .Project {
   @include mixins.pageLayout;
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: max-content 1fr;
+  padding-top: var(--space-8x);
+  grid-gap: var(--space-8x);
 
   &__navigation {
     position: sticky;
-    top: 0;
+    top: var(--space-8x);
+    height: fit-content;
   }
 
   &__title {
@@ -15,7 +18,6 @@
   }
 
   &__content {
-    padding-top: var(--space-8x);
     display: grid;
     grid-gap: var(--space-4x);
   }

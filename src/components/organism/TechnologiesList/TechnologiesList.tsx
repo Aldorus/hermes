@@ -1,8 +1,8 @@
 import React from "react";
 import "./_TechnologiesList.scss";
-import { Markdown } from "../../atom/Typography/Markdown";
-import { ProjectItem } from "../../../providers/Project.provider";
-import { BEMClassName } from "../../../commons/bem/bem";
+import { Markdown } from "@components/atom";
+import { ProjectItem } from "@providers";
+import { BEMClassName } from "@react/bem";
 
 type TechnologiesListProps = React.HTMLAttributes<HTMLDivElement> & {
   technologies: ProjectItem["technologies"];

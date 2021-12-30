@@ -1,5 +1,5 @@
 import React from "react";
-import { BEMClassName } from "../../../commons/bem/bem";
+import { BEMClassName } from "@react/bem";
 
 type SpinnerProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
@@ -12,7 +12,11 @@ export const Spinner: React.FC<SpinnerProps> = ({
 }) => {
   const namespace = BEMClassName(Spinner, props.className);
   return (
-    <div {...props} className={namespace.elementNames()}>
+    <div
+      {...props}
+      className={namespace.blocksNames()}
+      data-test-id={Spinner.displayName}
+    >
       {loading ? "Wait" : children}
     </div>
   );

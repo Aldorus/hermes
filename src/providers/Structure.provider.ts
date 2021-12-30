@@ -1,3 +1,5 @@
+import React from "react";
+import { About, Contacts, Clients, ProjectsList } from "@components/organism";
 import {
   Structure,
   StructureCollection,
@@ -10,11 +12,6 @@ import {
   ResponseProvider,
   SystemId,
 } from "./Response.provider";
-import { About } from "../components/organism/About/About";
-import { Contacts } from "../components/organism/Contact/Contacts";
-import { Clients } from "../components/organism/Clients/Clients";
-import { ProjectsList } from "../components/organism/Projects/ProjectsList";
-import React from "react";
 
 type StructureItem = SystemId & Pick<Structure, "clients" | "projects">;
 type GetStructureQueryType = {
@@ -22,7 +19,7 @@ type GetStructureQueryType = {
     items?: StructureItem[];
   };
 };
-const GetStructureQuery = gql`
+export const GetStructureQuery = gql`
   query GetStructureQuery {
     structureCollection {
       items {
@@ -49,7 +46,6 @@ const GetStructure = (): GetStructureResponse => {
     GetStructureQueryType,
     RequestCollectionProvider<StructureOrder, StructureFilter>
   >(GetStructureQuery);
-
   const gridDefinition: GridItem[] = [];
   gridDefinition.push({
     component: About,

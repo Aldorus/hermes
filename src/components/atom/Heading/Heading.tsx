@@ -1,11 +1,8 @@
 import React from "react";
 import "./_Heading.scss";
-import { BEMClassName } from "../../../commons/bem/bem";
+import { BEMClassName } from "@react/bem";
 
-type HeadingProps = React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLHeadingElement>,
-  HTMLHeadingElement
-> & {
+type HeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
   level: number;
   variant?: "dark" | "light";
 };
@@ -18,6 +15,7 @@ export const Heading: React.FC<HeadingProps> = ({
   const namespace = BEMClassName(Heading, props.className);
   return (
     <HeadingLevel
+      data-test-id={Heading.displayName}
       {...props}
       // @ts-ignore
       className={`${namespace.blocksNames({ variant, level: HeadingLevel })}`}

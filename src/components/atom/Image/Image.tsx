@@ -1,6 +1,6 @@
 import React from "react";
 import "./_Image.scss";
-import { BEMClassName } from "../../../commons/bem/bem";
+import { BEMClassName } from "@react/bem";
 
 export type ImageProps = React.DetailedHTMLProps<
   React.ImgHTMLAttributes<HTMLImageElement>,
@@ -8,6 +8,13 @@ export type ImageProps = React.DetailedHTMLProps<
 > & {};
 export const Image: React.FC<ImageProps> = ({ alt, ...props }) => {
   const namespace = BEMClassName(Image, props.className);
-  return <img {...props} className={namespace.blocksNames()} alt={alt} />;
+  return (
+    <img
+      data-test-id={Image.displayName}
+      {...props}
+      className={namespace.blocksNames()}
+      alt={alt}
+    />
+  );
 };
 Image.displayName = "Image";

@@ -9,7 +9,11 @@ type SectionProps = React.DetailedHTMLProps<
 export const Section: React.FC<SectionProps> = ({ ...props }) => {
   const namespace = BEMClassName(Section, props.className);
   return (
-    <section {...props} className={namespace.blocksNames()}>
+    <section
+      data-test-id={Section.displayName}
+      {...props}
+      className={namespace.blocksNames()}
+    >
       {props.children}
     </section>
   );

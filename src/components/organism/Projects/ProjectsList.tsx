@@ -1,16 +1,16 @@
 import React from "react";
-import { BEMClassName } from "../../../commons/bem/bem";
+import { BEMClassName } from "@react/bem";
+import { ProjectItem, ProjectProvider } from "@providers";
 import {
-  ProjectItem,
-  ProjectProvider,
-} from "../../../providers/Project.provider";
-import { Section } from "../../atom/Section/Section";
-import { Heading } from "../../atom/Heading/Heading";
+  Section,
+  Heading,
+  Markdown,
+  Article,
+  ArticleProps,
+  Link,
+} from "@components/atom";
 import "./_ProjectsList.scss";
-import { Markdown } from "../../atom/Typography/Markdown";
-import { Article, ArticleProps } from "../../atom/Article/Article";
-import { Link } from "../../atom/Link/Link";
-import { TechnologiesList } from "../TechnologiesList/TechnologiesList";
+import { TechnologiesList } from "@components/organism";
 
 type ProjectsListItemProps = ArticleProps & {
   project: ProjectItem;
@@ -24,6 +24,7 @@ const ProjectsListItem: React.FC<ProjectsListItemProps> = ({
     <Article
       className={namespaces.blocksNames()}
       {...props}
+      data-test-id={ProjectsListItem.displayName}
       id={project.slug || ""}
     >
       <Heading
@@ -67,7 +68,11 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ ...props }) => {
   const namespaces = BEMClassName(ProjectsList, props.className);
   const { projects } = ProjectProvider.list();
   return (
-    <Section {...props} className={namespaces.blocksNames()}>
+    <Section
+      data-test-id={ProjectsList.displayName}
+      {...props}
+      className={namespaces.blocksNames()}
+    >
       {projects?.map((project) => (
         <ProjectsListItem project={project} key={project.name} />
       ))}

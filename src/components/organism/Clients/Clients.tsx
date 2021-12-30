@@ -1,8 +1,7 @@
 import React from "react";
-import { BEMClassName } from "../../../commons/bem/bem";
-import { ClientItem, ClientProvider } from "../../../providers/Client.provider";
-import { Section } from "../../atom/Section/Section";
-import { Heading } from "../../atom/Heading/Heading";
+import { BEMClassName } from "@react/bem";
+import { ClientItem, ClientProvider } from "@providers";
+import { Section, Heading } from "@components/atom";
 import "./_Clients.scss";
 
 type ClientItemProps = {
@@ -12,6 +11,7 @@ const ClientItemList: React.FC<ClientItemProps> = ({ client }) => {
   const namespaces = BEMClassName(ClientItemList);
   return (
     <Heading
+      data-test-id={ClientItemList.displayName}
       level={1}
       variant={"light"}
       className={namespaces.elementNames("title")}
@@ -30,10 +30,11 @@ export const Clients: React.FC<ClientsProps> = ({ ...props }) => {
   const namespaces = BEMClassName(Clients, props.className);
   const { clients } = ClientProvider.list();
   return (
-    <Section {...props} className={namespaces.blocksNames()}>
-      <Heading level={2} className="Heading__light">
-        Clients
-      </Heading>
+    <Section
+      data-test-id={Clients.displayName}
+      {...props}
+      className={namespaces.blocksNames()}
+    >
       {clients?.map((client) => (
         <ClientItemList client={client} key={client.name} />
       ))}
