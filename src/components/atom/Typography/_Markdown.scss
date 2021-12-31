@@ -35,6 +35,10 @@
     @include typography.em;
   }
 
+  strong {
+    @include typography.strong;
+  }
+
   img {
     width: 100%;
   }

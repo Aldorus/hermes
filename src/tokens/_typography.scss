@@ -44,6 +44,10 @@
   font-size: 0.7rem;
 }
 
+@mixin strong {
+  font-weight: bold;
+}
+
 @mixin link {
   text-decoration: none;
   color: var(--color-primary);
