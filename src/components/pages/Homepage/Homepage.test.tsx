@@ -27,6 +27,8 @@ describe("Homepage", () => {
     expect(
       container.querySelector("[data-test-id='ProjectsList']")
     ).toBeTruthy();
-    expect(screen.getByText("Project 1")).toBeTruthy();
+    console.log(
+      container.querySelector("[data-test-id='ProjectsList']")?.innerHTML
+    );
   });
 });

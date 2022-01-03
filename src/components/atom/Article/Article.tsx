@@ -1,6 +1,6 @@
 import React from "react";
 import "./_Article.scss";
-import { BEMClassName } from "../../../commons/bem/bem";
+import { BEMClassName } from "@react/bem";
 
 export type ArticleProps = React.HTMLAttributes<HTMLElement> & {};
 export const Article: React.FC<ArticleProps> = ({ ...props }) => {

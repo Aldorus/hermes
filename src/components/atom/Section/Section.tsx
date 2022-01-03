@@ -1,6 +1,6 @@
 import React from "react";
 import "./_Section.scss";
-import { BEMClassName } from "../../../commons/bem/bem";
+import { BEMClassName } from "@react/bem";
 
 type SectionProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,

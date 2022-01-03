@@ -13,11 +13,11 @@ export const Spinner: React.FC<SpinnerProps> = ({
   const namespace = BEMClassName(Spinner, props.className);
   return (
     <div
+      data-test-id={Spinner.displayName}
       {...props}
       className={namespace.blocksNames()}
-      data-test-id={Spinner.displayName}
     >
-      {loading ? "Wait" : children}
+      {loading ? <span data-test-id="Spinner-loading">Wait</span> : children}
     </div>
   );
 };

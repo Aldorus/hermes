@@ -11,9 +11,9 @@ export const Image: React.FC<ImageProps> = ({ alt, ...props }) => {
   return (
     <img
       data-test-id={Image.displayName}
+      alt={alt}
       {...props}
       className={namespace.blocksNames()}
-      alt={alt}
     />
   );
 };
