@@ -17,7 +17,7 @@ export const Contacts: React.FC<ContactsProps> = ({ ...props }) => {
       {...props}
       className={namespaces.blocksNames()}
     >
-      <Markdown variant="light">{contacts?.content || ""}</Markdown>
+      <Markdown variant="light">{contacts?.content}</Markdown>
     </Section>
   );
 };

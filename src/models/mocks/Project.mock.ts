@@ -7,5 +7,7 @@ export const createProjectMock = (
   sys: createSysMock(),
   slug: "project-1",
   name: "Project 1",
+  excerpt: "Excerpt Project 1",
+  body: "Body project 1",
   ...props,
 });

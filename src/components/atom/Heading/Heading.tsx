@@ -1,11 +1,12 @@
 import React from "react";
 import "./_Heading.scss";
 import { BEMClassName } from "@react/bem";
+import { Variant } from "@types";
 
-type HeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
-  level: number;
-  variant?: "dark" | "light";
-};
+type HeadingProps = React.HTMLAttributes<HTMLHeadingElement> &
+  Variant & {
+    level: number;
+  };
 export const Heading: React.FC<HeadingProps> = ({
   level,
   variant = "dark",

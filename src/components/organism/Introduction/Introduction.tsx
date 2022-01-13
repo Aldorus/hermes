@@ -13,7 +13,7 @@ export const Introduction: React.FC<IntroductionProps> = ({ ...props }) => {
   const { typography: homepage } = TypographyProvider.get("homepage");
   return (
     <header {...props} className={namespaces.blocksNames()}>
-      <Markdown children={homepage?.content || ""} variant={"light"} />
+      <Markdown children={homepage?.content} variant={"light"} />
     </header>
   );
 };

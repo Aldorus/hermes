@@ -1,5 +1,5 @@
 import { GetProjectQuery } from "@providers";
-import { createProjectMock } from "./Project.mock";
+import { createProjectMock } from "../../models/mocks";
 import { ProjectOrder } from "../../models/graphql";
 
 export const ListProjectProviderMock = () => ({

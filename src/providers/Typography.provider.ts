@@ -17,7 +17,7 @@ type GetTypographyQueryType = {
     items?: TypographyItem[];
   };
 };
-const GetTypographyQuery = gql`
+export const GetTypographyQuery = gql`
   query GetTypographyQuery($where: TypographyFilter) {
     typographyCollection(where: $where) {
       items {

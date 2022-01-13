@@ -12,6 +12,7 @@ module.exports = {
       ),
       "@components/pages": path.resolve(__dirname, "src/components/pages"),
       "@providers/mocks": path.resolve(__dirname, "src/providers/mocks"),
+      "@types": path.resolve(__dirname, "src/types"),
       "@providers": path.resolve(__dirname, "src/providers"),
       "@react/bem": path.resolve(__dirname, "src/commons/bem/bem.tsx"),
     },

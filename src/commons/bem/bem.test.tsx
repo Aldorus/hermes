@@ -5,7 +5,7 @@ describe("BEMClassName", () => {
   const TestComponent = () => <></>;
   TestComponent.displayName = "TestComponent";
 
-  describe("blocksNames", function () {
+  describe("blocksNames", () => {
     test("Should return the blockName when there is only the component name", () => {
       const namespace = BEMClassName(TestComponent);
       expect(namespace.blocksNames()).toEqual("TestComponent");

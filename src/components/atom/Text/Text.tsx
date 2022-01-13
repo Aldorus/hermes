@@ -1,10 +1,9 @@
 import React from "react";
 import { BEMClassName } from "@react/bem";
+import { Variant } from "@types";
 import "./_Text.scss";
 
-type TextProps = React.HTMLAttributes<HTMLParagraphElement> & {
-  variant?: "light" | "dark";
-};
+type TextProps = React.HTMLAttributes<HTMLParagraphElement> & Variant;
 export const Text: React.FC<TextProps> = ({ variant = "dark", ...props }) => {
   const namespace = BEMClassName(Text, props.className);
   return (

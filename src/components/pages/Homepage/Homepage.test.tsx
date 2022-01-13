@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitFor, screen } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { Homepage } from "./Homepage";
 import { MockedProvider } from "@apollo/client/testing";
 import {
@@ -27,8 +27,5 @@ describe("Homepage", () => {
     expect(
       container.querySelector("[data-test-id='ProjectsList']")
     ).toBeTruthy();
-    console.log(
-      container.querySelector("[data-test-id='ProjectsList']")?.innerHTML
-    );
   });
 });

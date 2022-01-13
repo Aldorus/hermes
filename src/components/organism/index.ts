@@ -5,3 +5,4 @@ export * from "./Introduction/Introduction";
 export * from "./Navigation/Navigation";
 export * from "./Projects/ProjectsList";
 export * from "./TechnologiesList/TechnologiesList";
+export * from "./Console/Console";

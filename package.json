@@ -64,11 +64,17 @@
     "transformIgnorePatterns": [
       "node_modules/(?!react-markdown)/"
     ],
+    "collectCoverageFrom": [
+      "<rootDir>/**/*.{ts,tsx}",
+      "!**/mocks/**",
+      "!**/index.{ts,tsx}"
+    ],
     "moduleNameMapper": {
       "@components/atom": "<rootDir>/src/components/atom",
       "@components/organism": "<rootDir>/src/components/organism",
       "@components/pages": "<rootDir>/src/components/pages",
       "@providers/mocks": "<rootDir>/src/providers/mocks",
+      "@types": "<rootDir>/types",
       "@providers": "<rootDir>/src/providers",
       "@react/bem": "<rootDir>/src/commons/bem/bem.tsx"
     }

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./_App.scss";
 import { BEMClassName } from "@react/bem";
 import { Homepage, Project } from "@components/pages";
+import { Console } from "@components/organism";
 
 type AppProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
@@ -12,6 +13,7 @@ const App: React.FC<AppProps> = ({ ...props }) => {
   const namespaces = BEMClassName(App, props.className);
   return (
     <div className={namespaces.blocksNames()} {...props}>
+      <Console />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />}></Route>

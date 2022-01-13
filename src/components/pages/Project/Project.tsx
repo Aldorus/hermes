@@ -55,7 +55,7 @@ export const Project: React.FC<ProjectProps> = ({ ...props }) => {
         {/*    />*/}
         {/*  ))}*/}
         {/*</div>*/}
-        <Markdown variant={"light"}>{project?.body || ""}</Markdown>
+        <Markdown variant={"light"}>{project?.body}</Markdown>
       </Article>
     </Spinner>
   );

@@ -1,5 +1,5 @@
 import { GetStructureQuery } from "@providers";
-import { createStructureMock } from "./Structure.mock";
+import { createStructureMock } from "../../models/mocks";
 
 export const GetStructureProviderMock = () => ({
   request: {

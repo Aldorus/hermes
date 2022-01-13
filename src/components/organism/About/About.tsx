@@ -14,7 +14,7 @@ export const About: React.FC<AboutProps> = ({ ...props }) => {
   const namespaces = BEMClassName(About, props.className);
   return (
     <Section {...props} className={namespaces.blocksNames()}>
-      <Markdown children={about?.content || ""} variant={"light"} />
+      <Markdown children={about?.content} variant={"light"} />
     </Section>
   );
 };

@@ -25,7 +25,7 @@ const ProjectsListItem: React.FC<ProjectsListItemProps> = ({
       className={namespaces.blocksNames()}
       {...props}
       data-test-id={ProjectsListItem.displayName}
-      id={project.slug || ""}
+      id={project.slug || undefined}
     >
       <Heading
         level={4}
@@ -45,7 +45,7 @@ const ProjectsListItem: React.FC<ProjectsListItemProps> = ({
         className={namespaces.elementNames("technologies")}
         technologies={project?.technologies}
       />
-      <Markdown variant={"light"}>{project.excerpt || ""}</Markdown>
+      <Markdown variant={"light"}>{project.excerpt}</Markdown>
       {project.body && (
         <Link
           title={`Discover ${project.client?.name} ${project.name}`}

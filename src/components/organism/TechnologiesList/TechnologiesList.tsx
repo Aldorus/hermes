@@ -13,15 +13,18 @@ export const TechnologiesList: React.FC<TechnologiesListProps> = ({
 }) => {
   const namespace = BEMClassName(TechnologiesList, props.className);
   return (
-    <div {...props} className={namespace.blocksNames()}>
+    <div
+      data-test-id={TechnologiesList.displayName}
+      {...props}
+      className={namespace.blocksNames()}
+    >
       {technologies?.items.map((techno) => (
         <Markdown
           variant={"light"}
           key={techno.sys.id}
+          children={techno.name}
           className={namespace.elementNames("technology")}
-        >
-          {techno.name || ""}
-        </Markdown>
+        />
       ))}
     </div>
   );
