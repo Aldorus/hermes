@@ -45,14 +45,57 @@ export type Asset = {
 
 
 /** Represents a binary file in a space. An asset can be any file type. */
+export type AssetContentTypeArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetFileNameArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetHeightArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
 export type AssetLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 /** Represents a binary file in a space. An asset can be any file type. */
+export type AssetSizeArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetTitleArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
 export type AssetUrlArgs = {
+  locale?: InputMaybe<Scalars['String']>;
   transform?: InputMaybe<ImageTransformOptions>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetWidthArgs = {
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 export type AssetCollection = {
@@ -630,10 +673,19 @@ export type ProjectFilter = {
 export type ProjectLinkingCollections = {
   __typename: 'ProjectLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  structureCollection?: Maybe<StructureCollection>;
 };
 
 
 export type ProjectLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type ProjectLinkingCollectionsStructureCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
@@ -820,6 +872,7 @@ export type Structure = Entry & {
   clients?: Maybe<Scalars['Boolean']>;
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<StructureLinkingCollections>;
+  projectListCollection?: Maybe<StructureProjectListCollection>;
   projects?: Maybe<Scalars['Boolean']>;
   sys: Sys;
 };
@@ -840,6 +893,15 @@ export type StructureClientsArgs = {
 /** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/structure) */
 export type StructureLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/39f5y6g7sdnk/content_types/structure) */
+export type StructureProjectListCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -866,6 +928,7 @@ export type StructureFilter = {
   clients_exists?: InputMaybe<Scalars['Boolean']>;
   clients_not?: InputMaybe<Scalars['Boolean']>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  projectListCollection_exists?: InputMaybe<Scalars['Boolean']>;
   projects?: InputMaybe<Scalars['Boolean']>;
   projects_exists?: InputMaybe<Scalars['Boolean']>;
   projects_not?: InputMaybe<Scalars['Boolean']>;
@@ -901,6 +964,14 @@ export enum StructureOrder {
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
+
+export type StructureProjectListCollection = {
+  __typename: 'StructureProjectListCollection';
+  items: Array<Maybe<Project>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
 
 export type Sys = {
   __typename: 'Sys';
@@ -1240,6 +1311,7 @@ export type ResolversTypes = {
   StructureFilter: StructureFilter;
   StructureLinkingCollections: ResolverTypeWrapper<StructureLinkingCollections>;
   StructureOrder: StructureOrder;
+  StructureProjectListCollection: ResolverTypeWrapper<StructureProjectListCollection>;
   Sys: ResolverTypeWrapper<Sys>;
   SysFilter: SysFilter;
   Technology: ResolverTypeWrapper<Technology>;
@@ -1295,6 +1367,7 @@ export type ResolversParentTypes = {
   StructureCollection: StructureCollection;
   StructureFilter: StructureFilter;
   StructureLinkingCollections: StructureLinkingCollections;
+  StructureProjectListCollection: StructureProjectListCollection;
   Sys: Sys;
   SysFilter: SysFilter;
   Technology: Technology;
@@ -1309,17 +1382,17 @@ export type ResolversParentTypes = {
 };
 
 export type AssetResolvers<ContextType = any, ParentType extends ResolversParentTypes['Asset'] = ResolversParentTypes['Asset']> = {
-  contentType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  contentType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<AssetContentTypeArgs, never>>;
   contentfulMetadata?: Resolver<ResolversTypes['ContentfulMetadata'], ParentType, ContextType>;
-  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  fileName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  height?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<AssetDescriptionArgs, never>>;
+  fileName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<AssetFileNameArgs, never>>;
+  height?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType, RequireFields<AssetHeightArgs, never>>;
   linkedFrom?: Resolver<Maybe<ResolversTypes['AssetLinkingCollections']>, ParentType, ContextType, RequireFields<AssetLinkedFromArgs, never>>;
-  size?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  size?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType, RequireFields<AssetSizeArgs, never>>;
   sys?: Resolver<ResolversTypes['Sys'], ParentType, ContextType>;
-  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<AssetTitleArgs, never>>;
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<AssetUrlArgs, never>>;
-  width?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  width?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType, RequireFields<AssetWidthArgs, never>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1444,6 +1517,7 @@ export type ProjectCollectionResolvers<ContextType = any, ParentType extends Res
 
 export type ProjectLinkingCollectionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['ProjectLinkingCollections'] = ResolversParentTypes['ProjectLinkingCollections']> = {
   entryCollection?: Resolver<Maybe<ResolversTypes['EntryCollection']>, ParentType, ContextType, RequireFields<ProjectLinkingCollectionsEntryCollectionArgs, 'limit' | 'skip'>>;
+  structureCollection?: Resolver<Maybe<ResolversTypes['StructureCollection']>, ParentType, ContextType, RequireFields<ProjectLinkingCollectionsStructureCollectionArgs, 'limit' | 'skip'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1482,6 +1556,7 @@ export type StructureResolvers<ContextType = any, ParentType extends ResolversPa
   clients?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<StructureClientsArgs, never>>;
   contentfulMetadata?: Resolver<ResolversTypes['ContentfulMetadata'], ParentType, ContextType>;
   linkedFrom?: Resolver<Maybe<ResolversTypes['StructureLinkingCollections']>, ParentType, ContextType, RequireFields<StructureLinkedFromArgs, never>>;
+  projectListCollection?: Resolver<Maybe<ResolversTypes['StructureProjectListCollection']>, ParentType, ContextType, RequireFields<StructureProjectListCollectionArgs, 'limit' | 'skip'>>;
   projects?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<StructureProjectsArgs, never>>;
   sys?: Resolver<ResolversTypes['Sys'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -1497,6 +1572,14 @@ export type StructureCollectionResolvers<ContextType = any, ParentType extends R
 
 export type StructureLinkingCollectionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['StructureLinkingCollections'] = ResolversParentTypes['StructureLinkingCollections']> = {
   entryCollection?: Resolver<Maybe<ResolversTypes['EntryCollection']>, ParentType, ContextType, RequireFields<StructureLinkingCollectionsEntryCollectionArgs, 'limit' | 'skip'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type StructureProjectListCollectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['StructureProjectListCollection'] = ResolversParentTypes['StructureProjectListCollection']> = {
+  items?: Resolver<Array<Maybe<ResolversTypes['Project']>>, ParentType, ContextType>;
+  limit?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  skip?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  total?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1580,6 +1663,7 @@ export type Resolvers<ContextType = any> = {
   Structure?: StructureResolvers<ContextType>;
   StructureCollection?: StructureCollectionResolvers<ContextType>;
   StructureLinkingCollections?: StructureLinkingCollectionsResolvers<ContextType>;
+  StructureProjectListCollection?: StructureProjectListCollectionResolvers<ContextType>;
   Sys?: SysResolvers<ContextType>;
   Technology?: TechnologyResolvers<ContextType>;
   TechnologyCollection?: TechnologyCollectionResolvers<ContextType>;

@@ -1,13 +1,13 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import App from "./App";
+import Portfolio from "./Portfolio";
 import { MockedProvider } from "@apollo/client/testing";
 
-describe("App", () => {
+describe("Portfolio", () => {
   const mocks = [];
   const { container } = render(
     <MockedProvider mocks={mocks} addTypename={false}>
-      <App className="Custom-test" />
+      <Portfolio className="Custom-test" />
     </MockedProvider>
   );
 

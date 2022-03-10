@@ -1,16 +1,19 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./_App.scss";
+import "./_Portfolio.scss";
 import { BEMClassName } from "@react/bem";
 import { Homepage, Project } from "@components/pages";
 import { Console } from "@components/organism";
 
-type AppProps = React.DetailedHTMLProps<
+type PortfolioProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
   HTMLDivElement
 >;
-const App: React.FC<AppProps> = ({ ...props }) => {
-  const namespaces = BEMClassName(App, props.className);
+const Portfolio: React.FC<PortfolioProps> = ({ ...props }) => {
+  const namespaces = BEMClassName(Portfolio, props.className);
+  React.useEffect(() => {
+    // console.log(test);
+  }, []);
   return (
     <div className={namespaces.blocksNames()} {...props}>
       <Console />
@@ -23,5 +26,5 @@ const App: React.FC<AppProps> = ({ ...props }) => {
     </div>
   );
 };
-App.displayName = "App";
-export default App;
+Portfolio.displayName = "Portfolio";
+export default Portfolio;

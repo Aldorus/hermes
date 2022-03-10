@@ -1,11 +1,6 @@
 import React from "react";
-import { About, Contacts, Clients, ProjectsList } from "@components/organism";
-import {
-  Structure,
-  StructureCollection,
-  StructureFilter,
-  StructureOrder,
-} from "../models/graphql";
+import { About, Clients, Contacts, ProjectsList } from "@components/organism";
+import { Structure, StructureFilter, StructureOrder } from "../models/graphql";
 import { gql, useQuery } from "@apollo/client";
 import {
   RequestCollectionProvider,
@@ -15,20 +10,16 @@ import {
 
 type StructureItem = SystemId & Pick<Structure, "clients" | "projects">;
 type GetStructureQueryType = {
-  structureCollection: Pick<StructureCollection, "items"> & {
-    items?: StructureItem[];
-  };
+  structure: StructureItem;
 };
 export const GetStructureQuery = gql`
   query GetStructureQuery {
-    structureCollection {
-      items {
-        sys {
-          id
-        }
-        clients
-        projects
+    structure(id: "44ftjOPIIs4nWcxm2ubKD") {
+      sys {
+        id
       }
+      clients
+      projects
     }
   }
 `;
@@ -52,14 +43,14 @@ const GetStructure = (): GetStructureResponse => {
     label: "About",
     title: "Information about myself",
   });
-  if (data?.structureCollection?.items[0]?.clients) {
+  if (data?.structure.clients) {
     gridDefinition.push({
       component: Clients,
       label: "Clients",
       title: "About my clients",
     });
   }
-  if (data?.structureCollection?.items[0]?.projects) {
+  if (data?.structure.projects) {
     gridDefinition.push({
       component: ProjectsList,
       label: "Projects",

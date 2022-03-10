@@ -4,6 +4,8 @@ import {
   ProjectCollection,
   ProjectFilter,
   ProjectOrder,
+  Query,
+  Structure,
   Technology,
 } from "../models/graphql";
 import { gql, useQuery } from "@apollo/client";
@@ -20,40 +22,43 @@ export type ProjectItem = SystemId &
     technologies?: { items: TechnologyItem[] };
     mockups?: { items: AssetItem[] };
   };
-type GetProjectQueryType = {
-  projectCollection: Pick<ProjectCollection, "items"> & {
-    items?: ProjectItem[];
+type GetProjectQueryType = Pick<Query, "structure"> & {
+  structure: Pick<Structure, "projectListCollection"> & {
+    projectListCollection: Pick<ProjectCollection, "items"> & {
+      items?: ProjectItem[];
+    };
   };
 };
 export const GetProjectQuery = gql`
-  query GetProjectQuery($where: ProjectFilter, $order: [ProjectOrder]) {
-    projectCollection(where: $where, order: $order) {
-      items {
-        sys {
-          id
-        }
-        name
-        slug
-        excerpt
-        body
-        mockups: mockupsCollection(limit: 20) {
-          items {
-            sys {
-              id
-            }
-            url
-            title
+  query GetProjectQuery {
+    structure(id: "44ftjOPIIs4nWcxm2ubKD") {
+      projectListCollection {
+        items {
+          sys {
+            id
           }
-        }
-        client {
           name
-        }
-        technologies: technologiesCollection(limit: 20) {
-          items {
-            ... on Technology {
-              name
+          excerpt
+          body
+          mockups: mockupsCollection(limit: 20) {
+            items {
               sys {
                 id
+              }
+              url
+              title
+            }
+          }
+          client {
+            name
+          }
+          technologies: technologiesCollection(limit: 20) {
+            items {
+              ... on Technology {
+                name
+                sys {
+                  id
+                }
               }
             }
           }
@@ -78,7 +83,7 @@ const GetProject = (slug?: string): GetProjectResponse => {
     },
   });
   return {
-    project: data?.projectCollection?.items[0],
+    project: data?.structure?.projectListCollection?.items[0],
     loading,
     error,
   };
@@ -97,7 +102,7 @@ const ListProject = (): ListProjectsResponse => {
     },
   });
   return {
-    projects: data?.projectCollection?.items,
+    projects: data?.structure?.projectListCollection?.items,
     loading,
     error,
   };

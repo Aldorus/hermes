@@ -1,16 +1,16 @@
 """Represents a binary file in a space. An asset can be any file type."""
 type Asset {
-  contentType: String
+  contentType(locale: String): String
   contentfulMetadata: ContentfulMetadata!
-  description: String
-  fileName: String
-  height: Int
+  description(locale: String): String
+  fileName(locale: String): String
+  height(locale: String): Int
   linkedFrom(allowedLocales: [String]): AssetLinkingCollections
-  size: Int
+  size(locale: String): Int
   sys: Sys!
-  title: String
-  url(transform: ImageTransformOptions): String
-  width: Int
+  title(locale: String): String
+  url(locale: String, transform: ImageTransformOptions): String
+  width(locale: String): Int
 }
 
 type AssetCollection {
@@ -489,6 +489,7 @@ input ProjectFilter {
 
 type ProjectLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  structureCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): StructureCollection
 }
 
 enum ProjectOrder {
@@ -546,6 +547,7 @@ type Structure implements Entry {
   clients(locale: String): Boolean
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): StructureLinkingCollections
+  projectListCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): StructureProjectListCollection
   projects(locale: String): Boolean
   sys: Sys!
 }
@@ -567,6 +569,7 @@ input StructureFilter {
   clients_exists: Boolean
   clients_not: Boolean
   contentfulMetadata: ContentfulMetadataFilter
+  projectListCollection_exists: Boolean
   projects: Boolean
   projects_exists: Boolean
   projects_not: Boolean
@@ -592,6 +595,13 @@ enum StructureOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+type StructureProjectListCollection {
+  items: [Project]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 type Sys {
