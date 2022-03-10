@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Text } from "@components/atom";
 
 describe("Text", () => {
@@ -10,17 +10,19 @@ describe("Text", () => {
   );
 
   test("Should render text component", () => {
+    expect(screen.getByText(innerArticle)).toBeInTheDocument();
+    expect(screen.getByTestId("Text")).toBeInTheDocument();
     expect(container).toContainHTML(innerArticle);
-    expect(container.querySelector('[data-test-id="Text"]')).toBeTruthy();
-    expect(container.querySelector(`.${customClassName}`)).toBeTruthy();
+    expect(container.firstChild).toHaveClass(customClassName);
   });
 
   test("When passing a variant prop should render the proper variant name", () => {
     rerender(<Text className="Custom-test" variant="light" />);
-    expect(container.querySelector(".Custom-test--light")).toBeTruthy();
-    expect(container.querySelector(".Custom-test--dark")).toBeFalsy();
+    expect(container.firstChild).toHaveClass("Custom-test--light");
+    expect(container.firstChild).not.toHaveClass("Custom-test--dark");
+
     rerender(<Text className="Custom-test" variant="dark" />);
-    expect(container.querySelector(".Custom-test--light")).toBeFalsy();
-    expect(container.querySelector(".Custom-test--dark")).toBeTruthy();
+    expect(container.firstChild).not.toHaveClass("Custom-test--light");
+    expect(container.firstChild).toHaveClass("Custom-test--dark");
   });
 });

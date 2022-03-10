@@ -7,7 +7,7 @@ export const Article: React.FC<ArticleProps> = ({ ...props }) => {
   const namespace = BEMClassName(Article, props.className);
   return (
     <article
-      data-test-id={Article.displayName}
+      data-testid={Article.displayName}
       {...props}
       className={namespace.blocksNames()}
     >

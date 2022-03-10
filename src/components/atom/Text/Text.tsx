@@ -8,9 +8,9 @@ export const Text: React.FC<TextProps> = ({ variant = "dark", ...props }) => {
   const namespace = BEMClassName(Text, props.className);
   return (
     <p
+      data-testid={Text.displayName}
       {...props}
       className={namespace.blocksNames({ variant })}
-      data-test-id={Text.displayName}
     >
       {props.children}
     </p>

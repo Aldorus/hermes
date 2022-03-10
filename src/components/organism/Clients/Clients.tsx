@@ -11,7 +11,7 @@ const ClientItemList: React.FC<ClientItemProps> = ({ client }) => {
   const namespaces = BEMClassName(ClientItemList);
   return (
     <Heading
-      data-test-id={ClientItemList.displayName}
+      data-testid={ClientItemList.displayName}
       level={1}
       variant={"light"}
       className={namespaces.elementNames("title")}
@@ -31,7 +31,7 @@ export const Clients: React.FC<ClientsProps> = ({ ...props }) => {
   const { clients } = ClientProvider.list();
   return (
     <Section
-      data-test-id={Clients.displayName}
+      data-testid={Clients.displayName}
       {...props}
       className={namespaces.blocksNames()}
     >

@@ -69,7 +69,7 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ ...props }) => {
   const { projects } = ProjectProvider.list();
   return (
     <Section
-      data-test-id={ProjectsList.displayName}
+      data-testid={ProjectsList.displayName}
       {...props}
       className={namespaces.blocksNames()}
     >

@@ -1,9 +1,11 @@
 @use "~sass-mq" as mq;
 @use '../../../tokens/mixins';
+@use '../../../tokens/animations';
 
 .Navigation {
   --color-navigation: var(--color-primary);
   @include mixins.asideSpacer;
+  @include animations.opacityAnimation(3s);
 
   height: 100vh;
   padding-left: var(--space-8x);

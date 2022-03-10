@@ -8,9 +8,7 @@ export const GetStructureProviderMock = () => ({
   },
   result: {
     data: {
-      structureCollection: {
-        items: [createStructureMock({ clients: false, projects: true })],
-      },
+      structure: createStructureMock({ clients: false, projects: true }),
     },
   },
 });

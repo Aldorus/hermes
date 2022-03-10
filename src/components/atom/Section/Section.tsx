@@ -10,7 +10,7 @@ export const Section: React.FC<SectionProps> = ({ ...props }) => {
   const namespace = BEMClassName(Section, props.className);
   return (
     <section
-      data-test-id={Section.displayName}
+      data-testid={Section.displayName}
       {...props}
       className={namespace.blocksNames()}
     >

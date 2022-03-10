@@ -16,7 +16,7 @@ export const Heading: React.FC<HeadingProps> = ({
   const namespace = BEMClassName(Heading, props.className);
   return (
     <HeadingLevel
-      data-test-id={Heading.displayName}
+      data-testid={Heading.displayName}
       {...props}
       // @ts-ignore
       className={`${namespace.blocksNames({ variant, level: HeadingLevel })}`}

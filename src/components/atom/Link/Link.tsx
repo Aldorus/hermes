@@ -17,14 +17,14 @@ export const Link: React.FC<LinkProps> = ({ hoverEffect = true, ...props }) => {
     <NavLink
       smooth
       {...(props as ReactRouterLinkProps)}
-      data-test-id={Link.displayName}
+      data-testid={Link.displayName}
       className={namespaces.blocksNames({ hoverEffect })}
     />
   ) : (
     <a
       {...(props as DefaultLinkProps)}
       className={namespaces.blocksNames()}
-      data-test-id={Link.displayName}
+      data-testid={Link.displayName}
     >
       {props.children}
     </a>

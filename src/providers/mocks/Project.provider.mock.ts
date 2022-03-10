@@ -11,8 +11,10 @@ export const ListProjectProviderMock = () => ({
   },
   result: {
     data: {
-      projectCollection: {
-        items: [createProjectMock()],
+      structure: {
+        projectListCollection: {
+          items: [createProjectMock()],
+        },
       },
     },
   },

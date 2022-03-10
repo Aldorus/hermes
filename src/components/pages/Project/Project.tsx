@@ -1,6 +1,12 @@
 import React from "react";
 import "./_Project.scss";
-import { Heading, Markdown, Article, Spinner, Link } from "@components/atom";
+import {
+  Heading,
+  Markdown,
+  Article,
+  ComponentSpinner,
+  Link,
+} from "@components/atom";
 import { ProjectProvider } from "@providers";
 import { useParams } from "react-router-dom";
 import { TechnologiesList } from "@components/organism";
@@ -23,7 +29,7 @@ export const Project: React.FC<ProjectProps> = ({ ...props }) => {
   }, []);
 
   return (
-    <Spinner loading={loading} className={namespaces.blocksNames()}>
+    <ComponentSpinner loading={loading} className={namespaces.blocksNames()}>
       <Link
         to={`/#${project?.slug}`}
         className={namespaces.elementNames("navigation")}
@@ -57,7 +63,7 @@ export const Project: React.FC<ProjectProps> = ({ ...props }) => {
         {/*</div>*/}
         <Markdown variant={"light"}>{project?.body}</Markdown>
       </Article>
-    </Spinner>
+    </ComponentSpinner>
   );
 };
 Project.displayName = "Project";

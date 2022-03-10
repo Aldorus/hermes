@@ -10,7 +10,7 @@
   }
 
   &__aside {
-    padding-top: var(--space-2x);
+    padding-top: var(--space-8x);
     padding-left: var(--space-4x);
     position: relative;
 
@@ -20,6 +20,7 @@
 
     @include mq.mq($from: tablet) {
       padding-left: var(--space-8x);
+      padding-top: var(--space-2x);
       @include mixins.asideSpacer;
     }
   }

@@ -1,4 +1,5 @@
 @use "~sass-mq" as mq;
+@use '../../../tokens/animations';
 
 .Introduction {
   display: flex;
@@ -7,6 +8,11 @@
   justify-content: center;
   text-align: left;
   padding: 0 var(--space-4x);
+  @include animations.opacityAnimation(var(--longAnimation));
+
+  h1 {
+    line-height: .2;
+  }
 
   @include mq.mq($until: tablet) {
     grid-template-columns: 1fr;

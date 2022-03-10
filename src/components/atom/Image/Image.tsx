@@ -10,7 +10,7 @@ export const Image: React.FC<ImageProps> = ({ alt, ...props }) => {
   const namespace = BEMClassName(Image, props.className);
   return (
     <img
-      data-test-id={Image.displayName}
+      data-testid={Image.displayName}
       alt={alt}
       {...props}
       className={namespace.blocksNames()}

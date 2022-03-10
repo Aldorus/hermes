@@ -11,9 +11,6 @@ type PortfolioProps = React.DetailedHTMLProps<
 >;
 const Portfolio: React.FC<PortfolioProps> = ({ ...props }) => {
   const namespaces = BEMClassName(Portfolio, props.className);
-  React.useEffect(() => {
-    // console.log(test);
-  }, []);
   return (
     <div className={namespaces.blocksNames()} {...props}>
       <Console />
