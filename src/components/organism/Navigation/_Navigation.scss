@@ -12,7 +12,7 @@
   display: grid;
   z-index: 1;
 
-  .Navigation__item {
+  &__item {
     display: flex;
     align-items: center;
     padding-left: var(--space-4x);

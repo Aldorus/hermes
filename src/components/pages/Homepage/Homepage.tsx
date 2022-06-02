@@ -27,10 +27,10 @@ export const Homepage: React.FC<HomepageProps> = ({ ...props }) => {
         {structure?.map(({ component: Component, label }, index) => (
           <React.Fragment key={index}>
             <Text
-              className={namespaces.elementNames("aside", "aside-content")}
+              className={namespaces.elementNames("aside")}
               variant="light"
             >
-              0{index + 1}.&nbsp;&lt;{label}/&gt;
+                <span className={namespaces.elementNames("aside-content")}>0{index + 1}.&nbsp;&lt;{label}/&gt;</span>
             </Text>
             <Component
               id={label.toLowerCase()}

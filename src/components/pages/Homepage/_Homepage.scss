@@ -13,9 +13,11 @@
     padding-top: var(--space-8x);
     padding-left: var(--space-4x);
     position: relative;
+    opacity: 0.5;
 
     &-content {
-      opacity: 0.5;
+      position: sticky;
+      top: var(--space-2x);
     }
 
     @include mq.mq($from: tablet) {

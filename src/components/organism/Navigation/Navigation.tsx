@@ -22,7 +22,7 @@ export const Navigation: React.FC<NavigationProps> = ({ ...props }) => {
           hoverEffect={false}
           className={namespaces.elementNames("item")}
         >
-          0{index + 1}.&nbsp;&lt;{def.label}/&gt;
+          <span className={namespaces.elementNames('item-label')}>0{index + 1}.&nbsp;&lt;{def.label}/&gt;</span>
         </Link>
       ))}
     </nav>
