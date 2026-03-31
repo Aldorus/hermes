@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./_Portfolio.scss";
 import { BEMClassName } from "@react/bem";
 import { Homepage, Project } from "@components/pages";
-import { Console } from "@components/organism";
+import { Console, DevBackground } from "@components/organism";
 
 type PortfolioProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
@@ -13,6 +13,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ ...props }) => {
   const namespaces = BEMClassName(Portfolio, props.className);
   return (
     <div className={namespaces.blocksNames()} {...props}>
+      <DevBackground />
       <Console />
       <BrowserRouter>
         <Routes>

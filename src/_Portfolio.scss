@@ -1,5 +1,5 @@
 
-
 .Portfolio {
-
+  position: relative;
+  isolation: isolate; // creates a new stacking context so z-indexes are scoped
 }
